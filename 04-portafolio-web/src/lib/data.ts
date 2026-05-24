@@ -49,8 +49,9 @@ export const authors: Record<AuthorId, Author> = {
     name: 'Jose Céspedes Rivera',
     code: '20211020118',
     image: '/img/autores/jos.jpg',
-    shortBio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum interdum auctor sapien, eu placerat nisi mattis nec.',
+    shortBio: `Como estudiante de Ingeniería de Sistemas, paso mis días entre la lógica, las estructuras y las pantallas. Sin embargo, a través del lente, encuentro un espacio de total libertad para desarmar esa rigidez, jugando con las formas, la calidez del hogar y los colores.
+
+Mi mirada se detiene en lo que exige paciencia: el proceso minucioso de lo artesanal, las texturas ocultas que la prisa cotidiana ignora y la sutil nostalgia de lo retro. En la fotografía encontré el arte de saber esperar; ya sea para capturar el gesto espontáneo de un animal, el detalle imperceptible de un insecto, o la belleza suspendida en la cotidianidad. Para mí, fotografiar no es registrar lo obvio, sino revelar el valor y la pausa que existen detrás de cada pequeño detalle.`,
     // social: { instagram: 'https://instagram.com/tu_usuario' },
   },
   sof: {
@@ -58,8 +59,11 @@ export const authors: Record<AuthorId, Author> = {
     name: 'Sofía Lozano Martínez',
     code: '20211020088',
     image: '/img/autores/sof.jpg',
-    shortBio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lacinia velit. Donec accumsan, lacus a vulputate iaculis.',
+    shortBio: `Soy ingeniera en sistemas y, al mismo tiempo, exploro mi lado creativo a través del diseño de ropa y diferentes formas de expresión artística. Me gusta crear, observar y encontrar belleza en los detalles que muchas veces pasan desapercibidos.
+
+Soy una persona creativa y curiosa. Me inspira la naturaleza, especialmente las aves, porque reflejan libertad, movimiento y autenticidad.
+
+La fotografía nació para mí como una manera de capturar la esencia de situaciones reales y espontáneas: una risa inesperada, una mirada sincera o un instante. A través de mis imágenes también comparto mi arte, las prendas que he diseñado y el proceso creativo que hay detrás de cada una de ellas.`,
     // social: { instagram: 'https://instagram.com/tu_usuario' },
   },
   est: {

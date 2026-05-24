@@ -302,9 +302,11 @@ function MemberRow({
             }}
             className="overflow-hidden"
           >
-            <p className="mt-3 pl-[27px] pr-2 text-sm text-ink/70 leading-relaxed max-w-[460px]">
-              {member.bio}
-            </p>
+            <div className="mt-3 pl-[27px] pr-2 text-sm text-ink/70 leading-relaxed max-w-[460px] space-y-3">
+              {member.bio.split(/\n\s*\n/).map((para, i) => (
+                <p key={i}>{para.trim()}</p>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
