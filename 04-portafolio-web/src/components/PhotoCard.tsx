@@ -7,9 +7,10 @@ type Props = {
   photo: Photo;
   index: number;
   onClick?: (index: number) => void;
+  hideAuthor?: boolean;
 };
 
-export function PhotoCard({ photo, index, onClick }: Props) {
+export function PhotoCard({ photo, index, onClick, hideAuthor }: Props) {
   const author = authors[photo.author];
 
   return (
@@ -49,10 +50,12 @@ export function PhotoCard({ photo, index, onClick }: Props) {
         <span className="font-serif italic normal-case tracking-normal text-ink/70 text-xs">
           {String(index + 1).padStart(2, '0')}
         </span>
-        <span className="text-ink/60">{author.name.split(' ')[0]} {author.name.split(' ').slice(-2, -1)[0] ?? ''}</span>
+        {!hideAuthor && (
+          <span className="text-ink/60">{author.name.split(' ')[0]} {author.name.split(' ').slice(-2, -1)[0] ?? ''}</span>
+        )}
         {photo.title && (
           <>
-            <span className="text-muted/60">·</span>
+            {!hideAuthor && <span className="text-muted/60">·</span>}
             <span className="italic normal-case tracking-normal text-ink/70 font-serif text-xs">
               {photo.title}
             </span>

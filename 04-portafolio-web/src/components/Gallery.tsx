@@ -7,7 +7,13 @@ import { authors, type Photo } from '@/lib/data';
 import { asset } from '@/lib/paths';
 import { PhotoCard } from './PhotoCard';
 
-export function GalleryGrid({ photos }: { photos: Photo[] }) {
+export function GalleryGrid({
+  photos,
+  hideAuthor,
+}: {
+  photos: Photo[];
+  hideAuthor?: boolean;
+}) {
   const [index, setIndex] = useState(-1);
   const open = index >= 0;
 
@@ -17,7 +23,7 @@ export function GalleryGrid({ photos }: { photos: Photo[] }) {
       src: asset(photo.src),
       alt: photo.alt,
       title: photo.title,
-      description: author.name,
+      description: hideAuthor ? undefined : author.name,
     };
   });
 
@@ -30,6 +36,7 @@ export function GalleryGrid({ photos }: { photos: Photo[] }) {
             photo={photo}
             index={idx}
             onClick={(i) => setIndex(i)}
+            hideAuthor={hideAuthor}
           />
         ))}
       </div>

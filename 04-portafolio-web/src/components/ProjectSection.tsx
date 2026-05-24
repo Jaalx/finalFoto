@@ -13,6 +13,11 @@ export function ProjectSection({ project, index }: Props) {
 
   const isCollab = project.authors.length > 1;
   const hasPhotos = project.photos.length > 0;
+  // Cuando el proyecto es grupal, los autores ya estan listados en el header
+  // y el caption por foto seria ruido (ademas la asignacion individual de
+  // author en cada foto puede ser arbitraria). Solo mostrar autor cuando
+  // el proyecto es individual.
+  const hideAuthor = isCollab;
 
   return (
     <section className="max-w-page mx-auto px-6 py-16 border-t border-rule">
@@ -49,7 +54,7 @@ export function ProjectSection({ project, index }: Props) {
         </div>
       </div>
       {hasPhotos ? (
-        <GalleryGrid photos={project.photos} />
+        <GalleryGrid photos={project.photos} hideAuthor={hideAuthor} />
       ) : (
         <div className="border border-dashed border-rule rounded-md py-16 text-center">
           <p className="text-[11px] uppercase tracking-editorial text-muted">
