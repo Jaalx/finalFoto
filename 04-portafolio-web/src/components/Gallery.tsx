@@ -7,12 +7,7 @@ import { authors, type Photo } from '@/lib/data';
 import { asset } from '@/lib/paths';
 import { PhotoCard } from './PhotoCard';
 
-type Props = {
-  photos: Photo[];
-  label?: string;
-};
-
-export function Gallery({ photos, label }: Props) {
+export function GalleryGrid({ photos }: { photos: Photo[] }) {
   const [index, setIndex] = useState(-1);
   const open = index >= 0;
 
@@ -27,12 +22,7 @@ export function Gallery({ photos, label }: Props) {
   });
 
   return (
-    <section className="max-w-page mx-auto px-6 py-16 border-t border-rule">
-      {label && (
-        <p className="text-[11px] uppercase tracking-editorial text-muted mb-8">
-          {label}
-        </p>
-      )}
+    <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
         {photos.map((photo, idx) => (
           <PhotoCard
@@ -57,6 +47,19 @@ export function Gallery({ photos, label }: Props) {
         animation={{ fade: 250, swipe: 400 }}
         controller={{ closeOnBackdropClick: true }}
       />
+    </>
+  );
+}
+
+export function Gallery({ photos, label }: { photos: Photo[]; label?: string }) {
+  return (
+    <section className="max-w-page mx-auto px-6 py-16 border-t border-rule">
+      {label && (
+        <p className="text-[11px] uppercase tracking-editorial text-muted mb-8">
+          {label}
+        </p>
+      )}
+      <GalleryGrid photos={photos} />
     </section>
   );
 }

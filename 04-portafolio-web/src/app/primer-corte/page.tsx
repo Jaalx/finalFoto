@@ -1,8 +1,8 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Gallery } from '@/components/Gallery';
+import { ProjectSection } from '@/components/ProjectSection';
 import { FadeIn } from '@/components/FadeIn';
-import { primerCortePhotos } from '@/lib/data';
+import { primerCorteProjects } from '@/lib/data';
 
 export const metadata = {
   title: 'Primer corte · El tiempo',
@@ -21,13 +21,15 @@ export default function PrimerCortePage() {
             Primer corte
           </h1>
           <p className="mt-6 max-w-prose text-ink/70 leading-relaxed">
-            Selección de trabajos del primer corte del semestre. Cada imagen
-            firma su autor.
+            Tres proyectos del grupo en distintas configuraciones de autoría:
+            dos trabajos individuales y uno realizado en pareja.
           </p>
         </section>
-        <FadeIn>
-          <Gallery photos={primerCortePhotos} />
-        </FadeIn>
+        {primerCorteProjects.map((project, i) => (
+          <FadeIn key={project.id}>
+            <ProjectSection project={project} index={i} />
+          </FadeIn>
+        ))}
       </main>
       <Footer />
     </>

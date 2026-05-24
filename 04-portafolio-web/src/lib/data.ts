@@ -24,6 +24,14 @@ export type Photo = {
   title?: string;
 };
 
+export type Project = {
+  id: string;
+  title: string;
+  authors: AuthorId[];
+  description?: string;
+  photos: Photo[];
+};
+
 export const authors: Record<AuthorId, Author> = {
   jav: {
     id: 'jav',
@@ -104,13 +112,46 @@ export const autoralPhotos: Photo[] = [
   { id: 'a12', src: '/img/autoral/12.jpg', alt: 'Fotografía 12 del proyecto autoral', author: 'est', title: 'Quietud' },
 ];
 
-export const primerCortePhotos: Photo[] = [
-  { id: 'p01', src: '/img/primer-corte/01.jpg', alt: 'Primer corte 01', author: 'jav' },
-  { id: 'p02', src: '/img/primer-corte/02.jpg', alt: 'Primer corte 02', author: 'jos' },
-  { id: 'p03', src: '/img/primer-corte/03.jpg', alt: 'Primer corte 03', author: 'sof' },
-  { id: 'p04', src: '/img/primer-corte/04.jpg', alt: 'Primer corte 04', author: 'est' },
-  { id: 'p05', src: '/img/primer-corte/05.jpg', alt: 'Primer corte 05', author: 'jav' },
-  { id: 'p06', src: '/img/primer-corte/06.jpg', alt: 'Primer corte 06', author: 'jos' },
+export const primerCorteProjects: Project[] = [
+  {
+    id: 'pc-jav',
+    title: '[Título del proyecto de Javier]',
+    authors: ['jav'],
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reemplaza este texto con una descripción breve del proyecto.',
+    photos: [
+      { id: 'pc-jav-01', src: '/img/primer-corte/javier/01.jpg', alt: 'Primer corte · Javier 01', author: 'jav' },
+      { id: 'pc-jav-02', src: '/img/primer-corte/javier/02.jpg', alt: 'Primer corte · Javier 02', author: 'jav' },
+      { id: 'pc-jav-03', src: '/img/primer-corte/javier/03.jpg', alt: 'Primer corte · Javier 03', author: 'jav' },
+      { id: 'pc-jav-04', src: '/img/primer-corte/javier/04.jpg', alt: 'Primer corte · Javier 04', author: 'jav' },
+    ],
+  },
+  {
+    id: 'pc-sof-jos',
+    title: '[Título del proyecto de Sofía y Jose]',
+    authors: ['sof', 'jos'],
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proyecto realizado en pareja durante el primer corte.',
+    photos: [
+      { id: 'pc-sj-01', src: '/img/primer-corte/sofia-jose/01.jpg', alt: 'Primer corte · Sofía + Jose 01', author: 'sof' },
+      { id: 'pc-sj-02', src: '/img/primer-corte/sofia-jose/02.jpg', alt: 'Primer corte · Sofía + Jose 02', author: 'jos' },
+      { id: 'pc-sj-03', src: '/img/primer-corte/sofia-jose/03.jpg', alt: 'Primer corte · Sofía + Jose 03', author: 'sof' },
+      { id: 'pc-sj-04', src: '/img/primer-corte/sofia-jose/04.jpg', alt: 'Primer corte · Sofía + Jose 04', author: 'jos' },
+    ],
+  },
+  {
+    id: 'pc-est',
+    title: '[Título del proyecto de Esteban]',
+    authors: ['est'],
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reemplaza este texto con una descripción breve del proyecto.',
+    photos: [
+      { id: 'pc-est-01', src: '/img/primer-corte/esteban/01.jpg', alt: 'Primer corte · Esteban 01', author: 'est' },
+      { id: 'pc-est-02', src: '/img/primer-corte/esteban/02.jpg', alt: 'Primer corte · Esteban 02', author: 'est' },
+      { id: 'pc-est-03', src: '/img/primer-corte/esteban/03.jpg', alt: 'Primer corte · Esteban 03', author: 'est' },
+      { id: 'pc-est-04', src: '/img/primer-corte/esteban/04.jpg', alt: 'Primer corte · Esteban 04', author: 'est' },
+    ],
+  },
 ];
 
 export const segundoCortePhotos: Photo[] = [
