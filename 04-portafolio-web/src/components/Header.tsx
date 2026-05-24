@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { navLinks } from '@/lib/data';
 import { href } from '@/lib/paths';
+import { MobileNav } from './MobileNav';
 
 export function Header() {
   return (
@@ -12,7 +13,9 @@ export function Header() {
             Portafolio
           </span>
         </Link>
-        <nav>
+
+        {/* Desktop nav (md+) */}
+        <nav className="hidden md:block">
           <ul className="flex items-center gap-6 text-xs uppercase tracking-editorial">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -26,6 +29,9 @@ export function Header() {
             ))}
           </ul>
         </nav>
+
+        {/* Mobile nav (<md) */}
+        <MobileNav />
       </div>
     </header>
   );
