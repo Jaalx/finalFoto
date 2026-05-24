@@ -11,15 +11,13 @@ type Props = {
 
 export function PhotoCard({ photo, index, onClick }: Props) {
   const author = authors[photo.author];
-  const firstName = author.name.split(' ')[0];
-  const lastName = author.name.split(' ').slice(-2, -1)[0] ?? '';
 
   return (
-    <figure className="group relative overflow-hidden bg-ink/5">
+    <figure className="group flex flex-col gap-3">
       <button
         type="button"
         onClick={() => onClick?.(index)}
-        className="block w-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+        className="block w-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink overflow-hidden bg-ink/5"
         aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
       >
         <div className="aspect-[4/5] w-full overflow-hidden">
@@ -28,7 +26,7 @@ export function PhotoCard({ photo, index, onClick }: Props) {
             src={asset(photo.src)}
             alt={photo.alt}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] group-hover:rotate-[0.2deg]"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
             onError={(e) => {
               const el = e.currentTarget as HTMLImageElement;
               const parent = el.parentElement;
@@ -47,20 +45,19 @@ export function PhotoCard({ photo, index, onClick }: Props) {
           />
         </div>
       </button>
-      <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-3 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent text-paper opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        <div>
-          {photo.title && (
-            <p className="font-serif text-sm italic leading-tight">
-              {photo.title}
-            </p>
-          )}
-          <p className="text-[10px] uppercase tracking-editorial mt-0.5 text-paper/85">
-            {firstName} {lastName}
-          </p>
-        </div>
-        <span className="font-serif text-xs text-paper/70">
+      <figcaption className="flex items-baseline gap-2 text-[11px] uppercase tracking-editorial text-muted">
+        <span className="font-serif italic normal-case tracking-normal text-ink/70 text-xs">
           {String(index + 1).padStart(2, '0')}
         </span>
+        <span className="text-ink/60">{author.name.split(' ')[0]} {author.name.split(' ').slice(-2, -1)[0] ?? ''}</span>
+        {photo.title && (
+          <>
+            <span className="text-muted/60">·</span>
+            <span className="italic normal-case tracking-normal text-ink/70 font-serif text-xs">
+              {photo.title}
+            </span>
+          </>
+        )}
       </figcaption>
     </figure>
   );

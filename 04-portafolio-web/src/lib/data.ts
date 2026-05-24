@@ -22,6 +22,7 @@ export type Photo = {
   alt: string;
   author: AuthorId;
   title?: string;
+  note?: string;
 };
 
 export type Project = {
@@ -98,17 +99,45 @@ export const projectAutoral = {
 };
 
 export const autoralPhotos: Photo[] = [
-  { id: 'a01', src: '/img/autoral/01.jpg', alt: 'Fotografía 01 del proyecto autoral', author: 'jav', title: 'Reloj' },
+  {
+    id: 'a01',
+    src: '/img/autoral/01.jpg',
+    alt: 'Fotografía 01 del proyecto autoral',
+    author: 'jav',
+    title: 'Reloj',
+    note: 'Un reloj de pared que paró hace años, pero el polvo sobre los números sigue contando el tiempo a su manera. Lo fotografié sin disfrazar lo que era: un objeto que perdió su función pero no su presencia.',
+  },
   { id: 'a02', src: '/img/autoral/02.jpg', alt: 'Fotografía 02 del proyecto autoral', author: 'jav', title: 'Lugar vacío' },
   { id: 'a03', src: '/img/autoral/03.jpg', alt: 'Fotografía 03 del proyecto autoral', author: 'jav', title: 'Rutina' },
   { id: 'a04', src: '/img/autoral/04.jpg', alt: 'Fotografía 04 del proyecto autoral', author: 'jos', title: 'Envejecimiento' },
-  { id: 'a05', src: '/img/autoral/05.jpg', alt: 'Fotografía 05 del proyecto autoral', author: 'jos', title: 'Objeto deteriorado' },
+  {
+    id: 'a05',
+    src: '/img/autoral/05.jpg',
+    alt: 'Fotografía 05 del proyecto autoral',
+    author: 'jos',
+    title: 'Objeto deteriorado',
+    note: 'Lo que el uso le hace a las cosas. Una textura que no estaba ahí cuando el objeto era nuevo: tiempo escrito en la superficie. La luz fue la única decisión consciente; el resto lo puso el paso de los años.',
+  },
   { id: 'a06', src: '/img/autoral/06.jpg', alt: 'Fotografía 06 del proyecto autoral', author: 'jos', title: 'Día' },
-  { id: 'a07', src: '/img/autoral/07.jpg', alt: 'Fotografía 07 del proyecto autoral', author: 'sof', title: 'Noche' },
+  {
+    id: 'a07',
+    src: '/img/autoral/07.jpg',
+    alt: 'Fotografía 07 del proyecto autoral',
+    author: 'sof',
+    title: 'Noche',
+    note: 'La hora exacta en que el día deja de ser día y todavía no es noche. Esa pausa que casi nadie mira. Fotografié sin trípode, con la respiración lenta, porque quería que la imagen llevara también ese ritmo.',
+  },
   { id: 'a08', src: '/img/autoral/08.jpg', alt: 'Fotografía 08 del proyecto autoral', author: 'sof', title: 'Movimiento' },
   { id: 'a09', src: '/img/autoral/09.jpg', alt: 'Fotografía 09 del proyecto autoral', author: 'sof', title: 'Silencio' },
   { id: 'a10', src: '/img/autoral/10.jpg', alt: 'Fotografía 10 del proyecto autoral', author: 'est', title: 'Huella' },
-  { id: 'a11', src: '/img/autoral/11.jpg', alt: 'Fotografía 11 del proyecto autoral', author: 'est', title: 'Tránsito' },
+  {
+    id: 'a11',
+    src: '/img/autoral/11.jpg',
+    alt: 'Fotografía 11 del proyecto autoral',
+    author: 'est',
+    title: 'Tránsito',
+    note: 'El cuerpo en movimiento, congelado en un sexto de segundo. Pero no es la velocidad lo que me interesa: es lo que queda cuando algo pasa demasiado rápido para ser visto.',
+  },
   { id: 'a12', src: '/img/autoral/12.jpg', alt: 'Fotografía 12 del proyecto autoral', author: 'est', title: 'Quietud' },
 ];
 
