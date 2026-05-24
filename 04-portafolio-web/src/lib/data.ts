@@ -75,6 +75,7 @@ export const teamMembers: TeamMember[] = authorList.map((a) => ({
   name: a.name,
   role: a.code,
   image: a.image,
+  bio: a.shortBio,
   social: a.social,
 }));
 

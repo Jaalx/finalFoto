@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type KeyboardEvent } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   FaLinkedinIn,
   FaTwitter,
@@ -15,6 +16,7 @@ export interface TeamMember {
   name: string;
   role: string;
   image: string;
+  bio?: string;
   initials?: string;
   social?: {
     twitter?: string;
@@ -30,6 +32,10 @@ interface TeamShowcaseProps {
 
 export default function TeamShowcase({ members }: TeamShowcaseProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const toggleExpanded = (id: string) =>
+    setExpandedId((current) => (current === id ? null : id));
 
   const col1 = members.filter((_, i) => i % 3 === 0);
   const col2 = members.filter((_, i) => i % 3 === 1);
@@ -47,6 +53,7 @@ export default function TeamShowcase({ members }: TeamShowcaseProps) {
               className="w-[110px] h-[120px] sm:w-[130px] sm:h-[140px] md:w-[155px] md:h-[165px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
+              onClick={toggleExpanded}
             />
           ))}
         </div>
@@ -58,6 +65,7 @@ export default function TeamShowcase({ members }: TeamShowcaseProps) {
               className="w-[122px] h-[132px] sm:w-[145px] sm:h-[155px] md:w-[172px] md:h-[182px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
+              onClick={toggleExpanded}
             />
           ))}
         </div>
@@ -69,6 +77,7 @@ export default function TeamShowcase({ members }: TeamShowcaseProps) {
               className="w-[115px] h-[125px] sm:w-[136px] sm:h-[146px] md:w-[162px] md:h-[172px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
+              onClick={toggleExpanded}
             />
           ))}
         </div>
@@ -81,7 +90,9 @@ export default function TeamShowcase({ members }: TeamShowcaseProps) {
             key={member.id}
             member={member}
             hoveredId={hoveredId}
+            isExpanded={expandedId === member.id}
             onHover={setHoveredId}
+            onToggle={toggleExpanded}
           />
         ))}
       </div>
@@ -94,11 +105,13 @@ function PhotoCard({
   className,
   hoveredId,
   onHover,
+  onClick,
 }: {
   member: TeamMember;
   className: string;
   hoveredId: string | null;
   onHover: (id: string | null) => void;
+  onClick: (id: string) => void;
 }) {
   const isActive = hoveredId === member.id;
   const isDimmed = hoveredId !== null && !isActive;
@@ -112,14 +125,17 @@ function PhotoCard({
       .toUpperCase();
 
   return (
-    <div
+    <button
+      type="button"
+      onClick={() => onClick(member.id)}
+      onMouseEnter={() => onHover(member.id)}
+      onMouseLeave={() => onHover(null)}
+      aria-label={`Ver biografía de ${member.name}`}
       className={cn(
-        'overflow-hidden rounded-xl cursor-pointer flex-shrink-0 transition-opacity duration-300 bg-rule',
+        'overflow-hidden rounded-xl cursor-pointer flex-shrink-0 transition-opacity duration-300 bg-rule focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
         className,
         isDimmed ? 'opacity-60' : 'opacity-100',
       )}
-      onMouseEnter={() => onHover(member.id)}
-      onMouseLeave={() => onHover(null)}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -145,35 +161,52 @@ function PhotoCard({
           }
         }}
       />
-    </div>
+    </button>
   );
 }
 
 function MemberRow({
   member,
   hoveredId,
+  isExpanded,
   onHover,
+  onToggle,
 }: {
   member: TeamMember;
   hoveredId: string | null;
+  isExpanded: boolean;
   onHover: (id: string | null) => void;
+  onToggle: (id: string) => void;
 }) {
-  const isActive = hoveredId === member.id;
-  const isDimmed = hoveredId !== null && !isActive;
+  const isActive = hoveredId === member.id || isExpanded;
+  const isDimmed = hoveredId !== null && hoveredId !== member.id && !isExpanded;
+  const reduce = useReducedMotion();
   const hasSocial =
     member.social?.twitter ??
     member.social?.linkedin ??
     member.social?.instagram ??
     member.social?.behance;
 
+  const handleKey = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onToggle(member.id);
+    }
+  };
+
   return (
     <div
-      className={cn(
-        'cursor-pointer transition-opacity duration-300',
-        isDimmed ? 'opacity-50' : 'opacity-100',
-      )}
+      role="button"
+      tabIndex={0}
+      aria-expanded={isExpanded}
+      onClick={() => onToggle(member.id)}
+      onKeyDown={handleKey}
       onMouseEnter={() => onHover(member.id)}
       onMouseLeave={() => onHover(null)}
+      className={cn(
+        'cursor-pointer transition-opacity duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 rounded-sm',
+        isDimmed ? 'opacity-50' : 'opacity-100',
+      )}
     >
       <div className="flex items-center gap-2.5">
         <span
@@ -255,6 +288,26 @@ function MemberRow({
       <p className="mt-1.5 pl-[27px] text-[7px] md:text-[10px] font-medium uppercase tracking-[0.2em] text-muted">
         {member.role}
       </p>
+
+      <AnimatePresence initial={false}>
+        {isExpanded && member.bio && (
+          <motion.div
+            key="bio"
+            initial={reduce ? false : { height: 0, opacity: 0 }}
+            animate={reduce ? { height: 'auto', opacity: 1 } : { height: 'auto', opacity: 1 }}
+            exit={reduce ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={{
+              duration: reduce ? 0 : 0.35,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="overflow-hidden"
+          >
+            <p className="mt-3 pl-[27px] pr-2 text-sm text-ink/70 leading-relaxed max-w-[460px]">
+              {member.bio}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
