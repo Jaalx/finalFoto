@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans;
+    font-feature-settings: 'kern', 'liga', 'calt';
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+    font-feature-settings: 'kern', 'liga', 'dlig';
+  }
+
+  ::selection {
+    background: rgba(22, 21, 20, 0.85);
+    color: #f7f5f0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

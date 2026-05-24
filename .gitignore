@@ -8,6 +8,9 @@ desktop.ini
 .idea/
 *.swp
 
+# Claude Code config local (preferencias personales del usuario)
+.claude/settings.local.json
+
 # Archivos temporales de edición de imagen
 *.psd~
 *.xcf~
