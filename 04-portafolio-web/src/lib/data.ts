@@ -40,8 +40,9 @@ export const authors: Record<AuthorId, Author> = {
     name: 'Javier Álvarez Marín',
     code: '20202020028',
     image: '/img/autores/jav.jpg',
-    shortBio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in metus eget arcu commodo facilisis. Cras pulvinar nibh ut nisl rhoncus.',
+    shortBio: `Soy ingeniero de sistemas, pero desde siempre he estado conectado al mundo audiovisual. De pequeño editaba videos e imágenes para subirlos a mi canal de YouTube. Esa afición se convirtió en una especialización en audiovisuales durante el colegio y, ya en la universidad, en un trabajo paralelo a los estudios: primero en una agencia y luego en producciones de una productora, donde he podido aplicar lo aprendido en los cursos previos y en la carrera.
+
+Intento siempre ser auténtico y dar la mejor calidad posible. Me gusta hacer de todo, y por eso la fotografía es uno de los hobbies que más disfruto.`,
     // social: { instagram: 'https://instagram.com/tu_usuario' },
   },
   jos: {
