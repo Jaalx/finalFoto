@@ -5,14 +5,29 @@ import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import { authors, type Photo } from '@/lib/data';
 import { asset } from '@/lib/paths';
+import { cn } from '@/lib/utils';
 import { PhotoCard } from './PhotoCard';
+
+const BENTO_PATTERNS = [
+  'col-span-2 row-span-2',
+  'col-span-2 row-span-1',
+  'col-span-1 row-span-1',
+  'col-span-1 row-span-1',
+  'col-span-1 row-span-1',
+  'col-span-2 row-span-2',
+  'col-span-1 row-span-1',
+  'col-span-2 row-span-1',
+  'col-span-1 row-span-1',
+];
 
 export function GalleryGrid({
   photos,
   hideAuthor,
+  layout = 'grid',
 }: {
   photos: Photo[];
   hideAuthor?: boolean;
+  layout?: 'grid' | 'bento';
 }) {
   const [index, setIndex] = useState(-1);
   const open = index >= 0;
@@ -29,17 +44,30 @@ export function GalleryGrid({
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
-        {photos.map((photo, idx) => (
-          <PhotoCard
-            key={photo.id}
-            photo={photo}
-            index={idx}
-            onClick={(i) => setIndex(i)}
-            hideAuthor={hideAuthor}
-          />
-        ))}
-      </div>
+      {layout === 'bento' ? (
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] sm:auto-rows-[170px] md:auto-rows-[180px] gap-3 md:gap-4 [grid-auto-flow:dense]">
+          {photos.map((photo, i) => (
+            <BentoTile
+              key={photo.id}
+              photo={photo}
+              className={BENTO_PATTERNS[i % BENTO_PATTERNS.length]}
+              onOpen={() => setIndex(i)}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+          {photos.map((photo, idx) => (
+            <PhotoCard
+              key={photo.id}
+              photo={photo}
+              index={idx}
+              onClick={(i) => setIndex(i)}
+              hideAuthor={hideAuthor}
+            />
+          ))}
+        </div>
+      )}
 
       <Lightbox
         open={open}
@@ -55,6 +83,46 @@ export function GalleryGrid({
         controller={{ closeOnBackdropClick: true }}
       />
     </>
+  );
+}
+
+function BentoTile({
+  photo,
+  className,
+  onOpen,
+}: {
+  photo: Photo;
+  className: string;
+  onOpen: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
+      className={cn(
+        'group relative block overflow-hidden bg-ink/5 cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
+        className,
+      )}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={asset(photo.src)}
+        alt={photo.alt}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        onError={(e) => {
+          const el = e.currentTarget as HTMLImageElement;
+          el.style.display = 'none';
+        }}
+      />
+      {photo.title && (
+        <span className="absolute bottom-2 left-2 text-[10px] uppercase tracking-editorial text-paper bg-ink/55 px-2 py-1 rounded-sm opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
+          {photo.title}
+        </span>
+      )}
+    </button>
   );
 }
 

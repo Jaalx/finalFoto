@@ -54,7 +54,11 @@ export function ProjectSection({ project, index }: Props) {
         </div>
       </div>
       {hasPhotos ? (
-        <GalleryGrid photos={project.photos} hideAuthor={hideAuthor} />
+        <GalleryGrid
+          photos={project.photos}
+          hideAuthor={hideAuthor}
+          layout={project.layout ?? 'grid'}
+        />
       ) : (
         <div className="border border-dashed border-rule rounded-md py-16 text-center">
           <p className="text-[11px] uppercase tracking-editorial text-muted">

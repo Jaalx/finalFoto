@@ -32,6 +32,7 @@ export type Project = {
   authors: AuthorId[];
   description?: string;
   photos: Photo[];
+  layout?: 'grid' | 'bento';
 };
 
 export const authors: Record<AuthorId, Author> = {
@@ -161,26 +162,27 @@ function makePhotos(
 export const primerCorteProjects: Project[] = [
   {
     id: 'pc-jav',
-    title: 'La mirada fotográfica',
+    title: 'La caravana',
+    subtitle: 'Fotografía de vehículos',
     authors: ['jav'],
     description:
-      '[Descripción breve del proyecto — reemplaza este texto en src/lib/data.ts]',
-    photos: makePhotos('pc-jav', 'primer-corte/javier', 'jav', 5, 'Primer corte · Javier'),
+      'Caravana de vehículos de alta gama desde Bogotá hasta Ibagué, cruzando por Fusagasugá, con más de 4.000 regalos para niños que quizás nunca han visto un auto así de cerca. No era sobre los autos: era sobre lo que pueden cargar cuando deciden llevar algo más que motor y velocidad. Este portafolio es el registro visual de esa decisión.',
+    photos: makePhotos('pc-jav', 'primer-corte/javier', 'jav', 5, 'La caravana · Javier'),
   },
   {
     id: 'pc-sof-jos',
-    title: '[Título del proyecto en pareja]',
+    title: 'Impermanencia',
     authors: ['sof', 'jos'],
     description:
-      '[Descripción breve del proyecto realizado en pareja durante el primer corte]',
+      '«No es la impermanencia lo que nos hace sufrir sino querer que las cosas sean permanentes» — Thich Nhat Hanh. Contamos una historia cada día y procesamos millares de sensaciones; conceptualmente somos seres impermanentes buscando la permanencia. Si logramos ver, podemos dejar esa búsqueda incesante de lo no existente.',
     photos: [
-      ...makePhotos('pc-sj', 'primer-corte/sofia-jose', 'sof', 10, 'Primer corte · Sofía + Jose'),
+      ...makePhotos('pc-sj', 'primer-corte/sofia-jose', 'sof', 10, 'Impermanencia · Sofía + Jose'),
       ...Array.from({ length: 9 }, (_, i) => {
         const n = String(i + 11).padStart(2, '0');
         return {
           id: `pc-sj-${n}`,
           src: `/img/primer-corte/sofia-jose/${n}.webp`,
-          alt: `Primer corte · Sofía + Jose ${n}`,
+          alt: `Impermanencia · Sofía + Jose ${n}`,
           author: 'jos' as AuthorId,
         };
       }),
@@ -188,11 +190,11 @@ export const primerCorteProjects: Project[] = [
   },
   {
     id: 'pc-est',
-    title: '[Título del proyecto de Esteban]',
+    title: 'Bogotá en movimiento y silencio',
     authors: ['est'],
     description:
-      '[Descripción breve del proyecto — reemplaza este texto en src/lib/data.ts]',
-    photos: makePhotos('pc-est', 'primer-corte/esteban', 'est', 5, 'Primer corte · Esteban'),
+      'Bogotá entre dos ritmos. El juego del ping pong visto desde la universidad, la luna en fase creciente sobre un cielo azul profundo, el tráfico congelado y barrido alrededor de un carro en movimiento, los atardeceres morados desde una estación de TransMilenio, los cerros verdes imponentes extendiéndose tras la ciudad. Una mirada que pasa del movimiento al silencio y vuelve.',
+    photos: makePhotos('pc-est', 'primer-corte/esteban', 'est', 5, 'Bogotá en movimiento y silencio · Esteban'),
   },
 ];
 
@@ -200,9 +202,10 @@ export const segundoCorteProjects: Project[] = [
   {
     id: 'sc-jardin-dorado',
     title: 'Jardín Dorado',
+    subtitle: 'Serie fotográfica de producto',
     authors: ['jav', 'jos', 'sof', 'est'],
     description:
-      '[Descripción de la serie fotográfica grupal — reemplaza este texto en src/lib/data.ts]',
+      '«Jardín Dorado» es una serie temática de fotografía de producto que explora la identidad visual de una colección de joyería artesanal a través de la luz, la forma y la atmósfera. Cada imagen comparte un mismo lenguaje visual — pedestales geométricos blancos, fondo crema cálido, luz difusa lateral — pero varía en encuadre y composición para revelar una faceta distinta de cada pieza. La serie toma como referencia el trabajo de Irving Penn, donde el mismo universo estético se repite con disciplina, permitiendo que los objetos hablen por sí solos sin distracciones. La coherencia no está en repetir el mismo ángulo, sino en mantener la misma atmósfera: romántica, delicada y editorial.',
     photos: makePhotos(
       'sc-jd',
       'segundo-corte/jardin-dorado',
@@ -217,7 +220,8 @@ export const segundoCorteProjects: Project[] = [
     subtitle: 'Escenas urbanas — actividad de color',
     authors: ['jav'],
     description:
-      '[Descripción del trabajo de Javier sobre el color azul en escenas urbanas]',
+      'El azul como hilo visual de la ciudad. Veinte fotografías recogen al mismo color cumpliendo funciones distintas en el entorno urbano: la señal vertical de un parqueadero, la moto detenida en la acera, la fachada vidriada de un edificio, el grafiti que dice «Free The City», el plástico que cubre un vehículo en pausa, el bus de TransMilenio en tránsito, el letrero de una lavandería. Un solo color recorre escenas distintas — un ejercicio de mirada selectiva sobre lo cotidiano.',
+    layout: 'bento',
     photos: makePhotos(
       'sc-eu-jav',
       'segundo-corte/escenas-urbanas/javier',
@@ -233,6 +237,7 @@ export const segundoCorteProjects: Project[] = [
     authors: ['sof'],
     description:
       '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/sofia/ y completar este texto]',
+    layout: 'bento',
     photos: [],
   },
   {
@@ -242,6 +247,7 @@ export const segundoCorteProjects: Project[] = [
     authors: ['jos'],
     description:
       '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/jose/ y completar este texto]',
+    layout: 'bento',
     photos: [],
   },
   {
@@ -251,6 +257,7 @@ export const segundoCorteProjects: Project[] = [
     authors: ['est'],
     description:
       '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/esteban/ y completar este texto]',
+    layout: 'bento',
     photos: [],
   },
 ];
