@@ -177,7 +177,7 @@ export const primerCorteProjects: Project[] = [
       '[Descripción breve del proyecto realizado en pareja durante el primer corte]',
     photos: [
       ...makePhotos('pc-sj', 'primer-corte/sofia-jose', 'sof', 10, 'Primer corte · Sofía + Jose'),
-      ...Array.from({ length: 10 }, (_, i) => {
+      ...Array.from({ length: 9 }, (_, i) => {
         const n = String(i + 11).padStart(2, '0');
         return {
           id: `pc-sj-${n}`,
@@ -194,7 +194,7 @@ export const primerCorteProjects: Project[] = [
     authors: ['est'],
     description:
       '[Descripción breve del proyecto — reemplaza este texto en src/lib/data.ts]',
-    photos: makePhotos('pc-est', 'primer-corte/esteban', 'est', 7, 'Primer corte · Esteban'),
+    photos: makePhotos('pc-est', 'primer-corte/esteban', 'est', 5, 'Primer corte · Esteban'),
   },
 ];
 
