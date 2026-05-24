@@ -141,31 +141,50 @@ export const autoralPhotos: Photo[] = [
   { id: 'a12', src: '/img/autoral/12.jpg', alt: 'Fotografía 12 del proyecto autoral', author: 'est', title: 'Quietud' },
 ];
 
+function makePhotos(
+  prefix: string,
+  folder: string,
+  author: AuthorId,
+  count: number,
+  altPrefix: string,
+): Photo[] {
+  return Array.from({ length: count }, (_, i) => {
+    const n = String(i + 1).padStart(2, '0');
+    return {
+      id: `${prefix}-${n}`,
+      src: `/img/${folder}/${n}.jpg`,
+      alt: `${altPrefix} ${n}`,
+      author,
+    };
+  });
+}
+
 export const primerCorteProjects: Project[] = [
   {
     id: 'pc-jav',
-    title: '[Título del proyecto de Javier]',
+    title: 'La mirada fotográfica',
     authors: ['jav'],
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reemplaza este texto con una descripción breve del proyecto.',
-    photos: [
-      { id: 'pc-jav-01', src: '/img/primer-corte/javier/01.jpg', alt: 'Primer corte · Javier 01', author: 'jav' },
-      { id: 'pc-jav-02', src: '/img/primer-corte/javier/02.jpg', alt: 'Primer corte · Javier 02', author: 'jav' },
-      { id: 'pc-jav-03', src: '/img/primer-corte/javier/03.jpg', alt: 'Primer corte · Javier 03', author: 'jav' },
-      { id: 'pc-jav-04', src: '/img/primer-corte/javier/04.jpg', alt: 'Primer corte · Javier 04', author: 'jav' },
-    ],
+      '[Descripción breve del proyecto — reemplaza este texto en src/lib/data.ts]',
+    photos: makePhotos('pc-jav', 'primer-corte/javier', 'jav', 7, 'Primer corte · Javier'),
   },
   {
     id: 'pc-sof-jos',
-    title: '[Título del proyecto de Sofía y Jose]',
+    title: '[Título del proyecto en pareja]',
     authors: ['sof', 'jos'],
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proyecto realizado en pareja durante el primer corte.',
+      '[Descripción breve del proyecto realizado en pareja durante el primer corte]',
     photos: [
-      { id: 'pc-sj-01', src: '/img/primer-corte/sofia-jose/01.jpg', alt: 'Primer corte · Sofía + Jose 01', author: 'sof' },
-      { id: 'pc-sj-02', src: '/img/primer-corte/sofia-jose/02.jpg', alt: 'Primer corte · Sofía + Jose 02', author: 'jos' },
-      { id: 'pc-sj-03', src: '/img/primer-corte/sofia-jose/03.jpg', alt: 'Primer corte · Sofía + Jose 03', author: 'sof' },
-      { id: 'pc-sj-04', src: '/img/primer-corte/sofia-jose/04.jpg', alt: 'Primer corte · Sofía + Jose 04', author: 'jos' },
+      ...makePhotos('pc-sj', 'primer-corte/sofia-jose', 'sof', 10, 'Primer corte · Sofía + Jose'),
+      ...Array.from({ length: 10 }, (_, i) => {
+        const n = String(i + 11).padStart(2, '0');
+        return {
+          id: `pc-sj-${n}`,
+          src: `/img/primer-corte/sofia-jose/${n}.jpg`,
+          alt: `Primer corte · Sofía + Jose ${n}`,
+          author: 'jos' as AuthorId,
+        };
+      }),
     ],
   },
   {
@@ -173,13 +192,8 @@ export const primerCorteProjects: Project[] = [
     title: '[Título del proyecto de Esteban]',
     authors: ['est'],
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reemplaza este texto con una descripción breve del proyecto.',
-    photos: [
-      { id: 'pc-est-01', src: '/img/primer-corte/esteban/01.jpg', alt: 'Primer corte · Esteban 01', author: 'est' },
-      { id: 'pc-est-02', src: '/img/primer-corte/esteban/02.jpg', alt: 'Primer corte · Esteban 02', author: 'est' },
-      { id: 'pc-est-03', src: '/img/primer-corte/esteban/03.jpg', alt: 'Primer corte · Esteban 03', author: 'est' },
-      { id: 'pc-est-04', src: '/img/primer-corte/esteban/04.jpg', alt: 'Primer corte · Esteban 04', author: 'est' },
-    ],
+      '[Descripción breve del proyecto — reemplaza este texto en src/lib/data.ts]',
+    photos: makePhotos('pc-est', 'primer-corte/esteban', 'est', 7, 'Primer corte · Esteban'),
   },
 ];
 
