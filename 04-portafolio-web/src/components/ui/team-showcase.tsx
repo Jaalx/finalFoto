@@ -44,37 +44,37 @@ export default function TeamShowcase({ members }: TeamShowcaseProps) {
   return (
     <div className="flex flex-col md:flex-row items-start gap-8 md:gap-10 lg:gap-14 select-none w-full max-w-5xl mx-auto py-8 px-4 md:px-6 font-sans">
       {/* Photo grid */}
-      <div className="flex gap-2 md:gap-3 flex-shrink-0 overflow-x-auto pb-1 md:pb-0">
+      <div className="flex gap-2 md:gap-3 flex-shrink-0 w-full md:w-auto">
         <div className="flex flex-col gap-2 md:gap-3">
           {col1.map((member) => (
             <PhotoCard
               key={member.id}
               member={member}
-              className="w-[110px] h-[120px] sm:w-[130px] sm:h-[140px] md:w-[155px] md:h-[165px]"
+              className="flex-1 aspect-square md:flex-none md:w-[155px] md:h-[165px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
               onClick={toggleExpanded}
             />
           ))}
         </div>
-        <div className="flex flex-col gap-2 md:gap-3 mt-[48px] sm:mt-[56px] md:mt-[68px]">
+        <div className="flex flex-col gap-2 md:gap-3 mt-3 sm:mt-[56px] md:mt-[68px]">
           {col2.map((member) => (
             <PhotoCard
               key={member.id}
               member={member}
-              className="w-[122px] h-[132px] sm:w-[145px] sm:h-[155px] md:w-[172px] md:h-[182px]"
+              className="flex-1 aspect-square md:flex-none md:w-[172px] md:h-[182px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
               onClick={toggleExpanded}
             />
           ))}
         </div>
-        <div className="flex flex-col gap-2 md:gap-3 mt-[22px] sm:mt-[26px] md:mt-[32px]">
+        <div className="flex flex-col gap-2 md:gap-3 mt-1.5 sm:mt-[26px] md:mt-[32px]">
           {col3.map((member) => (
             <PhotoCard
               key={member.id}
               member={member}
-              className="w-[115px] h-[125px] sm:w-[136px] sm:h-[146px] md:w-[162px] md:h-[172px]"
+              className="flex-1 aspect-square md:flex-none md:w-[162px] md:h-[172px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
               onClick={toggleExpanded}
@@ -204,7 +204,7 @@ function MemberRow({
       onMouseEnter={() => onHover(member.id)}
       onMouseLeave={() => onHover(null)}
       className={cn(
-        'cursor-pointer transition-opacity duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 rounded-sm',
+        'cursor-pointer transition-opacity duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 rounded-sm py-1.5 md:py-0',
         isDimmed ? 'opacity-50' : 'opacity-100',
       )}
     >
@@ -239,7 +239,7 @@ function MemberRow({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="p-1 rounded text-muted hover:text-ink hover:bg-ink/10 transition-all duration-150 hover:scale-110"
+                className="p-1.5 md:p-1 rounded text-muted hover:text-ink hover:bg-ink/10 transition-all duration-150 hover:scale-110"
                 title="X / Twitter"
               >
                 <FaTwitter size={10} />
@@ -251,7 +251,7 @@ function MemberRow({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="p-1 rounded text-muted hover:text-ink hover:bg-ink/10 transition-all duration-150 hover:scale-110"
+                className="p-1.5 md:p-1 rounded text-muted hover:text-ink hover:bg-ink/10 transition-all duration-150 hover:scale-110"
                 title="LinkedIn"
               >
                 <FaLinkedinIn size={10} />
@@ -263,7 +263,7 @@ function MemberRow({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="p-1 rounded text-muted hover:text-ink hover:bg-ink/10 transition-all duration-150 hover:scale-110"
+                className="p-1.5 md:p-1 rounded text-muted hover:text-ink hover:bg-ink/10 transition-all duration-150 hover:scale-110"
                 title="Instagram"
               >
                 <FaInstagram size={10} />
@@ -275,7 +275,7 @@ function MemberRow({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="p-1 rounded text-muted hover:text-ink hover:bg-ink/10 transition-all duration-150 hover:scale-110"
+                className="p-1.5 md:p-1 rounded text-muted hover:text-ink hover:bg-ink/10 transition-all duration-150 hover:scale-110"
                 title="Behance"
               >
                 <FaBehance size={10} />
@@ -285,7 +285,7 @@ function MemberRow({
         )}
       </div>
 
-      <p className="mt-1.5 pl-[27px] text-[7px] md:text-[10px] font-medium uppercase tracking-[0.2em] text-muted">
+      <p className="mt-1.5 pl-6 md:pl-[27px] text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em] text-muted">
         {member.role}
       </p>
 
@@ -302,7 +302,7 @@ function MemberRow({
             }}
             className="overflow-hidden"
           >
-            <div className="mt-3 pl-[27px] pr-2 text-sm text-ink/70 leading-relaxed max-w-[460px] space-y-3">
+            <div className="mt-3 pl-6 pr-2 md:pl-[27px] text-sm text-ink/70 leading-relaxed max-w-[460px] space-y-3">
               {member.bio.split(/\n\s*\n/).map((para, i) => (
                 <p key={i}>{para.trim()}</p>
               ))}
