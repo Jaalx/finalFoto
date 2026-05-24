@@ -1,14 +1,14 @@
 # Portafolio web — El tiempo
 
-Sitio estático del portafolio colectivo (4 integrantes) construido con **Next.js + TypeScript + Tailwind CSS**, publicado en **GitHub Pages**.
+Sitio estático del portafolio colectivo (4 integrantes) construido con **Next.js + TypeScript + Tailwind CSS**, publicado en **Netlify**.
 
-Estética editorial clara, lightbox al click, animaciones suaves al scroll, hover refinado y respeto a `prefers-reduced-motion`.
+Estética editorial clara, secuencia single-column con fotos destacadas, lightbox al click, animaciones suaves al scroll, hover refinado y respeto a `prefers-reduced-motion`.
 
 ## Páginas
 
-- `/` — Proyecto autoral "El tiempo" (12 fotos + statement + bios de los 4 integrantes)
-- `/primer-corte` — Trabajos del primer corte
-- `/segundo-corte` — Trabajos del segundo corte
+- `/` — Proyecto autoral **"El tiempo"**: hero, statement, 12 fotografías en secuencia editorial con 4 destacadas (título + intención al lado), sección de autores con bio expandible al click.
+- `/primer-corte` — 3 sub-proyectos: Javier individual, Sofía + Jose en pareja, Esteban individual.
+- `/segundo-corte` — Serie grupal "Jardín Dorado" + actividad "Escenas urbanas en color" (4 sub-proyectos por integrante).
 
 ## Stack
 
@@ -20,6 +20,7 @@ Estética editorial clara, lightbox al click, animaciones suaves al scroll, hove
 | Tailwind CSS | 3 |
 | Framer Motion | 11 |
 | yet-another-react-lightbox | 3 |
+| react-icons | 5 |
 
 ## Desarrollo local
 
@@ -37,131 +38,146 @@ npm run build   # genera la carpeta out/ (sitio estático)
 
 ## Dónde poner las fotos
 
-Las imágenes van en `public/img/`. El sitio espera estas rutas (ya cableadas en `src/lib/data.ts`):
+Las imágenes van en `public/img/`. Estructura cableada en `src/lib/data.ts`:
 
 ```
 public/img/
-├── autoral/
-│   ├── 01.jpg  → Javier
-│   ├── 02.jpg  → Javier
-│   ├── 03.jpg  → Javier
-│   ├── 04.jpg  → Jose
-│   ├── 05.jpg  → Jose
-│   ├── 06.jpg  → Jose
-│   ├── 07.jpg  → Sofía
-│   ├── 08.jpg  → Sofía
-│   ├── 09.jpg  → Sofía
-│   ├── 10.jpg  → Esteban
-│   ├── 11.jpg  → Esteban
-│   └── 12.jpg  → Esteban
+├── autoral/                    → 12 fotos del proyecto "El tiempo"
+│   └── 01.jpg ... 12.jpg
+│
+├── autores/                    → autorretratos (avatar de cada uno)
+│   ├── jav.jpg
+│   ├── jos.jpg
+│   ├── sof.jpg
+│   └── est.jpg
+│
 ├── primer-corte/
-│   └── 01.jpg ... 06.jpg
+│   ├── javier/01.jpg ... 07.jpg            → proyecto individual
+│   ├── sofia-jose/01.jpg ... 20.jpg        → proyecto en pareja
+│   └── esteban/01.jpg ... 07.jpg           → proyecto individual
+│
 └── segundo-corte/
-    └── 01.jpg ... 06.jpg
+    ├── jardin-dorado/01.jpg ... 06.jpg     → serie grupal de los 4
+    └── escenas-urbanas/
+        ├── javier/01.jpg ... 20.jpg        → color azul
+        ├── sofia/                          → (pendiente)
+        ├── jose/                           → (pendiente)
+        └── esteban/                        → (pendiente)
 ```
 
 Recomendaciones:
 - Formato `.jpg` o `.webp`
-- Lado largo de 1600-2400px (suficiente para lightbox sin que el sitio pese demasiado)
-- Comprimir con [Squoosh](https://squoosh.app) o `sharp-cli`
+- Lado largo 1600-2400px (suficiente para lightbox sin pesar de más)
+- Comprimir con [Squoosh](https://squoosh.app) o `sharp-cli` si pesan mucho
 
-Mientras una imagen no exista, el sitio muestra un placeholder rayado con el título de la foto — útil para ver el layout antes de subir el material final.
+Cuando falta una foto, el sitio muestra un placeholder rayado con el título. Cuando falta un sub-proyecto entero, muestra un bloque "Por entregar".
 
-## Cambiar las bios y los créditos
+## Editar contenido
 
-Todo se edita en un solo archivo: **`src/lib/data.ts`**
+Todo lo editable vive en **`src/lib/data.ts`**:
 
-- `authors` — nombre, código y bio breve de cada integrante
-- `projectAutoral.statement` — array de párrafos del statement (el primero hace el hero, el resto bajan a la sección statement)
-- `autoralPhotos`, `primerCortePhotos`, `segundoCortePhotos` — listas de fotos con su autor
+| Qué quieres cambiar | Dónde |
+|---|---|
+| Bio de un integrante | `authors[id].shortBio` |
+| Foto de perfil de un autor | `authors[id].image` |
+| Redes sociales de un autor (opcional) | `authors[id].social` (descomenta y pega URL) |
+| Statement del proyecto autoral | `projectAutoral.statement` (array de párrafos) |
+| Lista de fotos del autoral + sus títulos | `autoralPhotos` |
+| **Notas editoriales** ("por qué se hizo") | Campo `note` en `autoralPhotos` — solo las fotos con `note` salen como destacadas |
+| Proyectos del primer corte | `primerCorteProjects` |
+| Proyectos del segundo corte | `segundoCorteProjects` (incluye placeholders de colores) |
 
-Cada integrante puede rellenar **su propia bio** reemplazando el Lorem ipsum del entry correspondiente en `authors`.
+## Deploy a Netlify
 
-## Deploy a GitHub Pages
+### Opción A — Git connect (recomendado)
 
-### Opción A — Auto-deploy con GitHub Actions (recomendado)
+1. Sube el repo a GitHub, GitLab o Bitbucket.
 
-Ya hay un workflow en `.github/workflows/deploy.yml` que builda y publica al hacer push.
+2. En Netlify: **Add new site → Import an existing project** → conecta tu proveedor de Git → elige el repo.
 
-1. Crear repo en GitHub. Dos opciones:
-   - **User Pages**: repo llamado `TU-USUARIO.github.io` → sitio en `https://TU-USUARIO.github.io`
-   - **Project Pages**: repo con otro nombre, por ejemplo `portafolio-tiempo` → sitio en `https://TU-USUARIO.github.io/portafolio-tiempo`
+3. Netlify lee `netlify.toml` en la raíz y autodetecta:
+   - **Base directory:** `04-portafolio-web`
+   - **Build command:** `npm run build`
+   - **Publish directory:** `04-portafolio-web/out`
+   - **Node:** `20`
 
-2. Desde la raíz del proyecto (`proyecto foto/`, no este subdirectorio):
+   No tienes que tocar nada. Confirma y deploy.
 
-   ```bash
-   git branch -M main
-   git remote add origin https://github.com/TU-USUARIO/NOMBRE-REPO.git
-   git push -u origin main
-   ```
+4. URL inicial: `https://nombre-random.netlify.app`. Para cambiarla: **Site configuration → Change site name** → elige uno tipo `el-tiempo-portafolio.netlify.app`.
 
-3. En GitHub: **Settings → Pages → Source: GitHub Actions**
+5. Cada push a `main` redepliega automáticamente.
 
-4. Hacer push a `main`. El workflow buildea y deploya. El sitio queda en la URL que GitHub te dará.
-
-   El workflow detecta automáticamente si es User Pages (`TU-USUARIO.github.io`) o Project Pages y ajusta el `basePath` por ti.
-
-### Opción B — Deploy manual
+### Opción B — Deploy manual (Netlify CLI)
 
 ```bash
+npm install -g netlify-cli
 cd 04-portafolio-web
-NEXT_PUBLIC_BASE_PATH=/nombre-del-repo npm run build
-# Sube el contenido de out/ a la rama gh-pages, o publícalo donde quieras
-```
-
-Si el repo es `TU-USUARIO.github.io`, omite la env var:
-
-```bash
 npm run build
+netlify deploy --prod --dir=out
 ```
+
+La primera vez te pedirá login y crear el sitio.
+
+### Dominio propio (opcional)
+
+En Netlify: **Domain management → Add a custom domain** → instrucciones DNS. Si no tienes dominio, el `.netlify.app` funciona perfectamente para el entregable.
 
 ## Enlazar el sitio desde el PDF
 
-Una vez publicado, el sitio tiene URL pública (`https://TU-USUARIO.github.io/...`). Inclúyela en el PDF final como hipervínculo cliclable en la sección del portafolio.
+Una vez publicado:
+- URL: `https://[tu-sitio].netlify.app/`
+- Incluye esta URL en el PDF final como hipervínculo cliclable en la sección del portafolio.
 
 ## Estructura del proyecto
 
 ```
 04-portafolio-web/
-├── public/                 → assets estáticos (fotos, favicon)
-│   └── img/
-│       ├── autoral/
-│       ├── primer-corte/
-│       └── segundo-corte/
+├── public/img/                 → fotos (ver árbol arriba)
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx      → layout raíz (fonts, metadata)
-│   │   ├── page.tsx        → home (proyecto autoral)
-│   │   ├── globals.css     → estilos base + prefers-reduced-motion
+│   │   ├── layout.tsx          → fonts (Fraunces serif, Inter sans), metadata
+│   │   ├── globals.css         → estilos base + prefers-reduced-motion
+│   │   ├── page.tsx            → home (proyecto autoral)
 │   │   ├── primer-corte/page.tsx
 │   │   └── segundo-corte/page.tsx
 │   ├── components/
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Hero.tsx
-│   │   ├── Statement.tsx
-│   │   ├── Gallery.tsx     → grid + lightbox (client)
-│   │   ├── PhotoCard.tsx   → tarjeta con crédito al hover
-│   │   ├── BioSection.tsx
-│   │   └── FadeIn.tsx      → animación al scroll (client)
+│   │   ├── Header.tsx          → navegación
+│   │   ├── Footer.tsx          → créditos del grupo
+│   │   ├── Hero.tsx            → título + dropcap del autoral
+│   │   ├── Statement.tsx       → párrafos del statement
+│   │   ├── AuthoralSequence.tsx → secuencia editorial del autoral (single-col, destacadas)
+│   │   ├── Gallery.tsx         → grid + lightbox (client) — usado en cortes anteriores
+│   │   ├── ProjectSection.tsx  → header (proyecto, modalidad, título, autores) + grid
+│   │   ├── PhotoCard.tsx       → tarjeta con caption visible debajo
+│   │   ├── FadeIn.tsx          → animación de scroll (framer-motion)
+│   │   └── ui/
+│   │       └── team-showcase.tsx → sección de autores con hover sincronizado + click-to-expand bio
 │   └── lib/
-│       ├── data.ts         → ÚNICA fuente de verdad: autores, fotos, statement
-│       └── paths.ts        → helper para basePath en GitHub Pages
-├── next.config.mjs         → output: 'export' + basePath dinámico
-├── tailwind.config.ts      → paleta editorial + tipografías
+│       ├── data.ts             → ÚNICA fuente de verdad
+│       ├── paths.ts            → helper asset(path) para basePath dinámico
+│       └── utils.ts            → cn() helper
+├── netlify.toml                → config de deploy (en raíz del repo)
+├── next.config.mjs             → output 'export' + basePath condicional
+├── tailwind.config.ts          → paleta editorial + tipografías
 └── package.json
 ```
 
 ## Solución de problemas
 
 **El sitio carga pero las imágenes están rotas (placeholder rayado):**
-Las fotos todavía no están subidas a `public/img/`. Súbelas con los nombres exactos listados arriba.
+Las fotos todavía no están en `public/img/` con el nombre exacto. Revisa el árbol de arriba.
+
+**El sitio carga y un sub-proyecto dice "Por entregar":**
+Ese proyecto no tiene fotos en su carpeta. Agrégalas y/o edita `data.ts` para llenar el array `photos` y cambiar `title` / `description`.
 
 **El build falla con error de TypeScript:**
-Probablemente editaste `data.ts` y dejaste un autor referenciado que ya no existe. Revisa que todos los `author:` en los arrays apunten a `'jav'`, `'jos'`, `'sof'` o `'est'`.
-
-**El sitio carga en GitHub Pages pero los enlaces internos rompen:**
-El `basePath` está mal. Si es Project Pages (repo no llamado `usuario.github.io`), el workflow lo maneja automáticamente. Si deployas manualmente, exporta `NEXT_PUBLIC_BASE_PATH=/nombre-repo` antes de `npm run build`.
+Probablemente editaste `data.ts` y un autor referenciado ya no existe. Verifica que cada `author:` apunte a `'jav'`, `'jos'`, `'sof'` o `'est'`.
 
 **Las animaciones se sienten agresivas / con mareo:**
-Activa "Reducir movimiento" en las preferencias de accesibilidad del SO. El sitio respeta `prefers-reduced-motion` y deshabilita transiciones y fade-ins.
+Activa "Reducir movimiento" en accesibilidad del SO. El sitio respeta `prefers-reduced-motion` y deshabilita transiciones.
+
+**Build en Netlify falla con "command not found":**
+Verifica que `package-lock.json` está commiteado. Netlify usa `npm ci` que requiere lockfile.
+
+**Quiero volver a GitHub Pages:**
+El `next.config.mjs` ya tiene soporte: define la env var `NEXT_PUBLIC_BASE_PATH=/nombre-repo` antes del build y configura GitHub Actions con esa env (workflow eliminado al migrar a Netlify pero se puede regenerar).

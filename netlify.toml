@@ -1,0 +1,33 @@
+# Netlify configuration for the portfolio site.
+# Documentation: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # The portfolio Next.js project lives in a subfolder of this repo.
+  base = "04-portafolio-web"
+
+  # Build command runs from `base` directory.
+  command = "npm run build"
+
+  # Static export output (relative to `base`). Next.js generates this when
+  # `output: 'export'` is set in next.config.mjs.
+  publish = "out"
+
+[build.environment]
+  # Pin Node to a version Next 14 supports cleanly.
+  NODE_VERSION = "20"
+
+# Long-cache for Next.js immutable build assets.
+# Everything under /_next/static/ is content-hashed by Next.
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Sensible defaults for security & privacy on a static site.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
