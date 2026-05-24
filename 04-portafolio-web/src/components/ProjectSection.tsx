@@ -12,6 +12,7 @@ export function ProjectSection({ project, index }: Props) {
     .join(' · ');
 
   const isCollab = project.authors.length > 1;
+  const hasPhotos = project.photos.length > 0;
 
   return (
     <section className="max-w-page mx-auto px-6 py-16 border-t border-rule">
@@ -21,10 +22,19 @@ export function ProjectSection({ project, index }: Props) {
             Proyecto {String(index + 1).padStart(2, '0')}
           </p>
           <p className="text-[11px] uppercase tracking-editorial text-muted mt-1">
-            {isCollab ? 'En pareja' : 'Individual'}
+            {isCollab
+              ? project.authors.length === 4
+                ? 'Grupal'
+                : 'En pareja'
+              : 'Individual'}
           </p>
         </div>
         <div className="md:col-span-8 md:col-start-5">
+          {project.subtitle && (
+            <p className="text-[11px] uppercase tracking-editorial text-muted mb-2">
+              {project.subtitle}
+            </p>
+          )}
           <h2 className="font-serif text-2xl md:text-3xl font-light tracking-tight leading-tight">
             {project.title}
           </h2>
@@ -38,7 +48,18 @@ export function ProjectSection({ project, index }: Props) {
           )}
         </div>
       </div>
-      <GalleryGrid photos={project.photos} />
+      {hasPhotos ? (
+        <GalleryGrid photos={project.photos} />
+      ) : (
+        <div className="border border-dashed border-rule rounded-md py-16 text-center">
+          <p className="text-[11px] uppercase tracking-editorial text-muted">
+            Por entregar
+          </p>
+          <p className="text-sm text-ink/60 mt-2">
+            Pendiente subir las fotos
+          </p>
+        </div>
+      )}
     </section>
   );
 }

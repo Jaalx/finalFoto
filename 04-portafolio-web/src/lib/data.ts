@@ -28,6 +28,7 @@ export type Photo = {
 export type Project = {
   id: string;
   title: string;
+  subtitle?: string;
   authors: AuthorId[];
   description?: string;
   photos: Photo[];
@@ -197,13 +198,63 @@ export const primerCorteProjects: Project[] = [
   },
 ];
 
-export const segundoCortePhotos: Photo[] = [
-  { id: 's01', src: '/img/segundo-corte/01.jpg', alt: 'Segundo corte 01', author: 'jav' },
-  { id: 's02', src: '/img/segundo-corte/02.jpg', alt: 'Segundo corte 02', author: 'jos' },
-  { id: 's03', src: '/img/segundo-corte/03.jpg', alt: 'Segundo corte 03', author: 'sof' },
-  { id: 's04', src: '/img/segundo-corte/04.jpg', alt: 'Segundo corte 04', author: 'est' },
-  { id: 's05', src: '/img/segundo-corte/05.jpg', alt: 'Segundo corte 05', author: 'sof' },
-  { id: 's06', src: '/img/segundo-corte/06.jpg', alt: 'Segundo corte 06', author: 'est' },
+export const segundoCorteProjects: Project[] = [
+  {
+    id: 'sc-jardin-dorado',
+    title: 'Jardín Dorado',
+    authors: ['jav', 'jos', 'sof', 'est'],
+    description:
+      '[Descripción de la serie fotográfica grupal — reemplaza este texto en src/lib/data.ts]',
+    photos: makePhotos(
+      'sc-jd',
+      'segundo-corte/jardin-dorado',
+      'jav',
+      6,
+      'Jardín Dorado',
+    ),
+  },
+  {
+    id: 'sc-eu-jav',
+    title: 'Azul',
+    subtitle: 'Escenas urbanas — actividad de color',
+    authors: ['jav'],
+    description:
+      '[Descripción del trabajo de Javier sobre el color azul en escenas urbanas]',
+    photos: makePhotos(
+      'sc-eu-jav',
+      'segundo-corte/escenas-urbanas/javier',
+      'jav',
+      20,
+      'Escenas urbanas · Javier · Azul',
+    ),
+  },
+  {
+    id: 'sc-eu-sof',
+    title: '[Color]',
+    subtitle: 'Escenas urbanas — actividad de color',
+    authors: ['sof'],
+    description:
+      '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/sofia/ y completar este texto]',
+    photos: [],
+  },
+  {
+    id: 'sc-eu-jos',
+    title: '[Color]',
+    subtitle: 'Escenas urbanas — actividad de color',
+    authors: ['jos'],
+    description:
+      '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/jose/ y completar este texto]',
+    photos: [],
+  },
+  {
+    id: 'sc-eu-est',
+    title: '[Color]',
+    subtitle: 'Escenas urbanas — actividad de color',
+    authors: ['est'],
+    description:
+      '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/esteban/ y completar este texto]',
+    photos: [],
+  },
 ];
 
 export const navLinks = [
