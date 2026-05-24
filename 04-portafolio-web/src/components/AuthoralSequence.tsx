@@ -119,6 +119,7 @@ function Frame({
               src={asset(photo.src)}
               alt={photo.alt}
               loading="lazy"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.015]"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
@@ -223,6 +224,7 @@ function BentoTile({
         src={asset(photo.src)}
         alt={photo.alt}
         loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         onError={(e) => {
           e.currentTarget.style.display = 'none';

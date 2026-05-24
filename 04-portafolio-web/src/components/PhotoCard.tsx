@@ -27,6 +27,7 @@ export function PhotoCard({ photo, index, onClick, hideAuthor }: Props) {
             src={asset(photo.src)}
             alt={photo.alt}
             loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
             onError={(e) => {
               const el = e.currentTarget as HTMLImageElement;
