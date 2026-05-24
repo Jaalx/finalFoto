@@ -11,10 +11,11 @@ desktop.ini
 # Claude Code config local (preferencias personales del usuario)
 .claude/settings.local.json
 
-# Fuentes originales (PDFs entregados, dumps de WhatsApp).
+# Fuentes originales (PDFs entregados, dumps de WhatsApp, zips temáticos).
 # Ya procesadas y movidas a 04-portafolio-web/public/img/.
 # Si quieres conservar copias, mantelas localmente.
 /*.pdf
+/*.zip
 /Actividad_EscenasUrbanas/
 
 # Archivos temporales de edición de imagen

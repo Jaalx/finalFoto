@@ -217,7 +217,7 @@ export const segundoCorteProjects: Project[] = [
   {
     id: 'sc-eu-jav',
     title: 'Azul',
-    subtitle: 'Escenas urbanas — actividad de color',
+    subtitle: 'Escenas urbanas — actividad temática',
     authors: ['jav'],
     description:
       'El azul como hilo visual de la ciudad. Veinte fotografías recogen al mismo color cumpliendo funciones distintas en el entorno urbano: la señal vertical de un parqueadero, la moto detenida en la acera, la fachada vidriada de un edificio, el grafiti que dice «Free The City», el plástico que cubre un vehículo en pausa, el bus de TransMilenio en tránsito, el letrero de una lavandería. Un solo color recorre escenas distintas — un ejercicio de mirada selectiva sobre lo cotidiano.',
@@ -232,28 +232,40 @@ export const segundoCorteProjects: Project[] = [
   },
   {
     id: 'sc-eu-sof',
-    title: '[Color]',
-    subtitle: 'Escenas urbanas — actividad de color',
+    title: 'Verde',
+    subtitle: 'Escenas urbanas — actividad temática',
     authors: ['sof'],
     description:
-      '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/sofia/ y completar este texto]',
+      'El verde como signo del entorno urbano. Siete fotografías rastrean al mismo color en lo que la ciudad le ofrece: vegetación que se filtra entre el cemento, fachadas pintadas, señalización, fragmentos cotidianos. Un ejercicio de atención sobre el color que aparece cuando se le busca.',
     layout: 'bento',
-    photos: [],
+    photos: makePhotos(
+      'sc-eu-sof',
+      'segundo-corte/escenas-urbanas/sofia',
+      'sof',
+      7,
+      'Escenas urbanas · Sofía · Verde',
+    ),
   },
   {
     id: 'sc-eu-jos',
-    title: '[Color]',
-    subtitle: 'Escenas urbanas — actividad de color',
+    title: 'Letra A',
+    subtitle: 'Escenas urbanas — actividad temática',
     authors: ['jos'],
     description:
-      '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/jose/ y completar este texto]',
+      'La letra A como objeto encontrado en la ciudad. Cuatro fotografías rastrean el mismo signo gráfico en contextos distintos: tipografía de señales, grafiti, avisos comerciales, letras en muros. Un ejercicio de atención sobre una unidad del alfabeto que la calle repite sin pensarlo.',
     layout: 'bento',
-    photos: [],
+    photos: makePhotos(
+      'sc-eu-jos',
+      'segundo-corte/escenas-urbanas/jose',
+      'jos',
+      4,
+      'Escenas urbanas · Jose · Letra A',
+    ),
   },
   {
     id: 'sc-eu-est',
-    title: '[Color]',
-    subtitle: 'Escenas urbanas — actividad de color',
+    title: '[Temática]',
+    subtitle: 'Escenas urbanas — actividad temática',
     authors: ['est'],
     description:
       '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/esteban/ y completar este texto]',
