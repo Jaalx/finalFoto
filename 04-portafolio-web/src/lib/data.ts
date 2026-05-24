@@ -167,7 +167,7 @@ export const primerCorteProjects: Project[] = [
     authors: ['jav'],
     description:
       '[Descripción breve del proyecto — reemplaza este texto en src/lib/data.ts]',
-    photos: makePhotos('pc-jav', 'primer-corte/javier', 'jav', 7, 'Primer corte · Javier'),
+    photos: makePhotos('pc-jav', 'primer-corte/javier', 'jav', 5, 'Primer corte · Javier'),
   },
   {
     id: 'pc-sof-jos',
