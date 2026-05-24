@@ -209,7 +209,7 @@ export const segundoCorteProjects: Project[] = [
       'sc-jd',
       'segundo-corte/jardin-dorado',
       'jav',
-      6,
+      10,
       'Jardín Dorado',
     ),
   },
