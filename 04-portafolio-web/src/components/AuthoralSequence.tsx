@@ -46,7 +46,6 @@ export function AuthoralSequence({ photos }: Props) {
         </div>
       </div>
 
-      {/* Destacadas: single-column editorial */}
       <div className="flex flex-col gap-24 md:gap-32 mb-24 md:mb-32">
         {featured.map((photo, i) => (
           <Frame
@@ -58,7 +57,6 @@ export function AuthoralSequence({ photos }: Props) {
         ))}
       </div>
 
-      {/* Resto: bento grid */}
       {rest.length > 0 && (
         <>
           <div className="md:grid md:grid-cols-12 gap-8 mb-8">
@@ -112,16 +110,19 @@ function Frame({
           type="button"
           onClick={onOpen}
           aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
-          className="block w-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink overflow-hidden bg-ink/5"
+          className="block w-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
         >
-          <div className="aspect-[4/5] w-full overflow-hidden">
+          <div className="relative aspect-[3/4] w-full overflow-hidden">
+            <Placeholder number={numberLabel} title={photo.title} large />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={asset(photo.src)}
               alt={photo.alt}
               loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.015]"
-              onError={(e) => makePlaceholder(e, photo.title ?? `Foto ${index + 1}`)}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.015]"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
             />
           </div>
         </button>
@@ -184,6 +185,7 @@ function BentoGrid({
           <BentoTile
             key={photo.id}
             photo={photo}
+            index={startIndex + i}
             className={cls}
             onOpen={() => onOpen(startIndex + i)}
           />
@@ -195,30 +197,36 @@ function BentoGrid({
 
 function BentoTile({
   photo,
+  index,
   className,
   onOpen,
 }: {
   photo: Photo;
+  index: number;
   className: string;
   onOpen: () => void;
 }) {
+  const numberLabel = String(index + 1).padStart(2, '0');
   return (
     <button
       type="button"
       onClick={onOpen}
       aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
       className={cn(
-        'group relative block overflow-hidden bg-ink/5 cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
+        'group relative block overflow-hidden cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
         className,
       )}
     >
+      <Placeholder number={numberLabel} title={photo.title} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={asset(photo.src)}
         alt={photo.alt}
         loading="lazy"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-        onError={(e) => makePlaceholder(e, photo.title ?? photo.alt)}
+        onError={(e) => {
+          e.currentTarget.style.display = 'none';
+        }}
       />
       {photo.title && (
         <span className="absolute bottom-2 left-2 text-[10px] uppercase tracking-editorial text-paper bg-ink/55 px-2 py-1 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -229,21 +237,43 @@ function BentoTile({
   );
 }
 
-function makePlaceholder(
-  e: React.SyntheticEvent<HTMLImageElement>,
-  label: string,
-) {
-  const el = e.currentTarget;
-  const parent = el.parentElement;
-  el.style.display = 'none';
-  if (parent && !parent.querySelector('[data-placeholder]')) {
-    const ph = document.createElement('div');
-    ph.setAttribute('data-placeholder', 'true');
-    ph.className =
-      'absolute inset-0 w-full h-full flex items-center justify-center text-muted text-sm uppercase tracking-editorial';
-    ph.style.background =
-      'repeating-linear-gradient(45deg, #e8e3d8, #e8e3d8 12px, #ded8c9 12px, #ded8c9 24px)';
-    ph.textContent = label;
-    parent.appendChild(ph);
-  }
+function Placeholder({
+  number,
+  title,
+  large,
+}: {
+  number: string;
+  title?: string;
+  large?: boolean;
+}) {
+  return (
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-paper border border-rule/60 text-center px-4">
+      <span
+        className={cn(
+          'font-serif italic text-ink/15',
+          large ? 'text-7xl md:text-8xl' : 'text-4xl md:text-5xl',
+        )}
+      >
+        {number}
+      </span>
+      {title && (
+        <span
+          className={cn(
+            'text-muted/80 uppercase tracking-editorial',
+            large ? 'text-xs' : 'text-[10px]',
+          )}
+        >
+          {title}
+        </span>
+      )}
+      <span
+        className={cn(
+          'text-muted/50 uppercase tracking-editorial',
+          large ? 'text-[10px] mt-2' : 'text-[8px] mt-1',
+        )}
+      >
+        imagen pendiente
+      </span>
+    </div>
+  );
 }
