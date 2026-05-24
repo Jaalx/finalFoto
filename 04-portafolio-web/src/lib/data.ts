@@ -1,10 +1,19 @@
+import type { TeamMember } from '@/components/ui/team-showcase';
+
 export type AuthorId = 'jav' | 'jos' | 'sof' | 'est';
 
 export type Author = {
   id: AuthorId;
   name: string;
   code: string;
+  image: string;
   shortBio: string;
+  social?: {
+    instagram?: string;
+    twitter?: string;
+    linkedin?: string;
+    behance?: string;
+  };
 };
 
 export type Photo = {
@@ -18,31 +27,39 @@ export type Photo = {
 export const authors: Record<AuthorId, Author> = {
   jav: {
     id: 'jav',
-    name: 'Javier Alejandro Álvarez Marín',
+    name: 'Javier Álvarez Marín',
     code: '20202020028',
+    image: '/img/autores/jav.jpg',
     shortBio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in metus eget arcu commodo facilisis. Cras pulvinar nibh ut nisl rhoncus, vitae faucibus felis suscipit.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in metus eget arcu commodo facilisis. Cras pulvinar nibh ut nisl rhoncus.',
+    // social: { instagram: 'https://instagram.com/tu_usuario' },
   },
   jos: {
     id: 'jos',
-    name: 'Jose Jesús Céspedes Rivera',
+    name: 'Jose Céspedes Rivera',
     code: '20211020118',
+    image: '/img/autores/jos.jpg',
     shortBio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum interdum auctor sapien, eu placerat nisi mattis nec. Integer hendrerit nibh sit amet quam tristique cursus.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum interdum auctor sapien, eu placerat nisi mattis nec.',
+    // social: { instagram: 'https://instagram.com/tu_usuario' },
   },
   sof: {
     id: 'sof',
     name: 'Sofía Lozano Martínez',
     code: '20211020088',
+    image: '/img/autores/sof.jpg',
     shortBio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lacinia velit. Donec accumsan, lacus a vulputate iaculis, dolor velit faucibus tortor.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lacinia velit. Donec accumsan, lacus a vulputate iaculis.',
+    // social: { instagram: 'https://instagram.com/tu_usuario' },
   },
   est: {
     id: 'est',
-    name: 'Esteban Alexander Bautista Solano',
+    name: 'Esteban Bautista Solano',
     code: '20221020089',
+    image: '/img/autores/est.jpg',
     shortBio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus.',
+    // social: { instagram: 'https://instagram.com/tu_usuario' },
   },
 };
 
@@ -52,6 +69,14 @@ export const authorList: Author[] = [
   authors.sof,
   authors.est,
 ];
+
+export const teamMembers: TeamMember[] = authorList.map((a) => ({
+  id: a.id,
+  name: a.name,
+  role: a.code,
+  image: a.image,
+  social: a.social,
+}));
 
 export const projectAutoral = {
   title: 'El tiempo',

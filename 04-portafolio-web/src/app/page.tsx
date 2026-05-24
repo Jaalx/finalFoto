@@ -3,9 +3,9 @@ import { Footer } from '@/components/Footer';
 import { Hero } from '@/components/Hero';
 import { Statement } from '@/components/Statement';
 import { Gallery } from '@/components/Gallery';
-import { BioSection } from '@/components/BioSection';
 import { FadeIn } from '@/components/FadeIn';
-import { autoralPhotos } from '@/lib/data';
+import TeamShowcase from '@/components/ui/team-showcase';
+import { autoralPhotos, teamMembers } from '@/lib/data';
 
 export default function HomePage() {
   return (
@@ -25,7 +25,15 @@ export default function HomePage() {
           />
         </FadeIn>
         <FadeIn>
-          <BioSection />
+          <section className="border-t border-rule pt-16 pb-8">
+            <p className="text-[11px] uppercase tracking-editorial text-muted text-center mb-2">
+              Autores
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tightest text-center mb-2">
+              Quienes miran
+            </h2>
+            <TeamShowcase members={teamMembers} />
+          </section>
         </FadeIn>
       </main>
       <Footer />
