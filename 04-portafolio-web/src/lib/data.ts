@@ -261,4 +261,7 @@ export const navLinks = [
   { href: '/segundo-corte', label: 'Segundo corte' },
 ];
 
-export const year = new Date().getFullYear();
+// Constante hardcoded en lugar de `new Date().getFullYear()` para evitar
+// hydration mismatch (server y client pueden evaluarla en momentos distintos).
+// Actualizar manualmente cada año.
+export const year = 2026;
