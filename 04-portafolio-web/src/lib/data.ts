@@ -252,15 +252,14 @@ export const segundoCorteProjects: Project[] = [
     subtitle: 'Escenas urbanas — actividad temática',
     authors: ['jos'],
     description:
-      'La letra A como objeto encontrado en la ciudad. Cuatro fotografías rastrean el mismo signo gráfico en contextos distintos: tipografía de señales, grafiti, avisos comerciales, letras en muros. Un ejercicio de atención sobre una unidad del alfabeto que la calle repite sin pensarlo.',
+      'Cosas que empiezan con A. Cuatro fotografías encontradas en la ciudad comparten una sola letra inicial: árbol, azul, arco, ave. Un ejercicio de mirada que parte del alfabeto y termina mostrando lo que el sonido «a» guarda repartido entre objetos, colores y formas distintas.',
     layout: 'bento',
-    photos: makePhotos(
-      'sc-eu-jos',
-      'segundo-corte/escenas-urbanas/jose',
-      'jos',
-      4,
-      'Escenas urbanas · Jose · Letra A',
-    ),
+    photos: [
+      { id: 'sc-eu-jos-01', src: '/img/segundo-corte/escenas-urbanas/jose/01.webp', alt: 'Árbol — Jose · Letra A', author: 'jos', title: 'Árbol' },
+      { id: 'sc-eu-jos-02', src: '/img/segundo-corte/escenas-urbanas/jose/02.webp', alt: 'Azul — Jose · Letra A', author: 'jos', title: 'Azul' },
+      { id: 'sc-eu-jos-03', src: '/img/segundo-corte/escenas-urbanas/jose/03.webp', alt: 'Arco — Jose · Letra A', author: 'jos', title: 'Arco' },
+      { id: 'sc-eu-jos-04', src: '/img/segundo-corte/escenas-urbanas/jose/04.webp', alt: 'Ave — Jose · Letra A', author: 'jos', title: 'Ave' },
+    ],
   },
   {
     id: 'sc-eu-est',
