@@ -25,16 +25,22 @@ First Load JS: ~143 KB por ruta (incluye framer-motion + lightbox).
 
 ## Last Updated
 
-2026-05-24 — Las 5 fases construidas y validadas con build. GSD workflow completo. Próximos pasos manuales del usuario:
-1. Subir fotos a `04-portafolio-web/public/img/{autoral,primer-corte,segundo-corte}/`
-2. Editar bios reales en `04-portafolio-web/src/lib/data.ts`
-3. Crear repo en GitHub y `git push`
-4. Activar GitHub Pages en Settings → Pages → Source: GitHub Actions
-5. Incluir URL del sitio en el PDF final
+2026-05-24 — Completed quick task 001: Revisa y ajusta el responsive (incluyendo hamburger menu mobile y conversión a WebP)
 
 ## Open Questions / Notes
 
-- Usuario de GitHub: pendiente. El workflow detecta User Pages vs Project Pages automáticamente.
-- Bios: placeholders Lorem ipsum por integrante. Cada uno completa la suya.
-- Decisión sitio colectivo: confirmada por el usuario. Cada foto firma su autor en el lightbox y hover.
+- Usuario de GitHub: Jaalx (repo: https://github.com/Jaalx/finalFoto, branch main). Deploy en Netlify.
+- Bios: 3 de 4 reales (Javier, Sofía, José). Esteban sigue con placeholder Lorem ipsum.
+- Decisión sitio colectivo: confirmada por el usuario. Cada foto firma su autor solo en proyectos individuales; en grupales el header lista los autores.
 - Vulnerabilidad de seguridad de Next.js 14.2.15: ya actualizado a ^14.2.35 (parcheada).
+- Imágenes en formato WebP (quality 82, ~40-50% más livianas que JPG).
+
+### Blockers/Concerns
+
+(ninguno)
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 001 | Revisa y ajusta el responsive (+ hamburger menu mobile + WebP) | 2026-05-24 | 4e953de | [001-revisa-y-ajusta-el-responsive](./quick/001-revisa-y-ajusta-el-responsive/) |
