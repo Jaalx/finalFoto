@@ -178,7 +178,7 @@ function BentoGrid({
   onOpen: (absoluteIndex: number) => void;
 }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px] gap-3 md:gap-4 [grid-auto-flow:dense]">
+    <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] sm:auto-rows-[170px] md:auto-rows-[180px] gap-3 md:gap-4 [grid-auto-flow:dense]">
       {photos.map((photo, i) => {
         const cls = BENTO_PATTERNS[i % BENTO_PATTERNS.length];
         return (
@@ -229,7 +229,7 @@ function BentoTile({
         }}
       />
       {photo.title && (
-        <span className="absolute bottom-2 left-2 text-[10px] uppercase tracking-editorial text-paper bg-ink/55 px-2 py-1 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <span className="absolute bottom-2 left-2 text-[10px] uppercase tracking-editorial text-paper bg-ink/55 px-2 py-1 rounded-sm opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
           {photo.title}
         </span>
       )}

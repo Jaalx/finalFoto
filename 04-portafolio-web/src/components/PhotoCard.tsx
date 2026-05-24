@@ -46,7 +46,7 @@ export function PhotoCard({ photo, index, onClick, hideAuthor }: Props) {
           />
         </div>
       </button>
-      <figcaption className="flex items-baseline gap-2 text-[11px] uppercase tracking-editorial text-muted">
+      <figcaption className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[11px] uppercase tracking-editorial text-muted">
         <span className="font-serif italic normal-case tracking-normal text-ink/70 text-xs">
           {String(index + 1).padStart(2, '0')}
         </span>
