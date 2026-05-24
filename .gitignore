@@ -1,0 +1,20 @@
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Archivos temporales de edición de imagen
+*.psd~
+*.xcf~
+*~
+
+# Archivos de cámara crudos (opcional, pesados; descomenta si los quieres ignorar)
+# *.RAW
+# *.CR2
+# *.NEF
+# *.ARW
