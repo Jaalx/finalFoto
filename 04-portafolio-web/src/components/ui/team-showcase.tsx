@@ -180,8 +180,10 @@ function MemberRow({
   onHover: (id: string | null) => void;
   onToggle: (id: string) => void;
 }) {
-  const isActive = hoveredId === member.id || isExpanded;
-  const isDimmed = hoveredId !== null && hoveredId !== member.id && !isExpanded;
+  const isHovered = hoveredId === member.id;
+  const isActive = isHovered || isExpanded;
+  const isDimmed = hoveredId !== null && !isHovered && !isExpanded;
+  const showBio = (isHovered || isExpanded) && !!member.bio;
   const reduce = useReducedMotion();
   const hasSocial =
     member.social?.twitter ??
@@ -292,7 +294,7 @@ function MemberRow({
       </p>
 
       <AnimatePresence initial={false}>
-        {isExpanded && member.bio && (
+        {showBio && (
           <motion.div
             key="bio"
             initial={reduce ? false : { height: 0, opacity: 0 }}
