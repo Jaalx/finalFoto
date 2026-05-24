@@ -15,7 +15,11 @@ export function AuthoralSequence({ photos }: Props) {
   const [index, setIndex] = useState(-1);
   const open = index >= 0;
 
-  const slides = photos.map((photo) => {
+  const featured = photos.filter((p) => p.note);
+  const rest = photos.filter((p) => !p.note);
+  const ordered = [...featured, ...rest];
+
+  const slides = ordered.map((photo) => {
     const author = authors[photo.author];
     return {
       src: asset(photo.src),
@@ -35,15 +39,16 @@ export function AuthoralSequence({ photos }: Props) {
         </div>
         <div className="md:col-span-8 md:col-start-5">
           <p className="text-ink/70 leading-relaxed max-w-prose">
-            Doce fotografías ordenadas como una secuencia. Cuatro destacadas
-            traen consigo la intención de su autor. El resto se sostiene en
-            su silencio.
+            Doce fotografías ordenadas como una secuencia. Tres destacadas
+            traen consigo la intención de su autor. El resto se sostiene
+            en su silencio.
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col gap-24 md:gap-32">
-        {photos.map((photo, i) => (
+      {/* Destacadas: single-column editorial */}
+      <div className="flex flex-col gap-24 md:gap-32 mb-24 md:mb-32">
+        {featured.map((photo, i) => (
           <Frame
             key={photo.id}
             photo={photo}
@@ -52,6 +57,24 @@ export function AuthoralSequence({ photos }: Props) {
           />
         ))}
       </div>
+
+      {/* Resto: bento grid */}
+      {rest.length > 0 && (
+        <>
+          <div className="md:grid md:grid-cols-12 gap-8 mb-8">
+            <div className="md:col-span-3">
+              <p className="text-[11px] uppercase tracking-editorial text-muted">
+                Resto de la serie
+              </p>
+            </div>
+          </div>
+          <BentoGrid
+            photos={rest}
+            startIndex={featured.length}
+            onOpen={(absIdx) => setIndex(absIdx)}
+          />
+        </>
+      )}
 
       <Lightbox
         open={open}
@@ -80,54 +103,25 @@ function Frame({
   onOpen: () => void;
 }) {
   const author = authors[photo.author];
-  const hasNote = !!photo.note;
   const numberLabel = String(index + 1).padStart(2, '0');
 
   return (
-    <article
-      className={cn(
-        'grid grid-cols-1 md:grid-cols-12 gap-y-6 gap-x-8 items-start',
-      )}
-    >
-      <div
-        className={cn(
-          'md:col-span-12',
-          hasNote && 'md:col-span-8',
-        )}
-      >
+    <article className="grid grid-cols-1 md:grid-cols-12 gap-y-6 gap-x-8 items-start">
+      <div className="md:col-span-8">
         <button
           type="button"
           onClick={onOpen}
           aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
           className="block w-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink overflow-hidden bg-ink/5"
         >
-          <div
-            className={cn(
-              'w-full overflow-hidden',
-              hasNote ? 'aspect-[4/5]' : 'aspect-[3/2]',
-            )}
-          >
+          <div className="aspect-[4/5] w-full overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={asset(photo.src)}
               alt={photo.alt}
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.015]"
-              onError={(e) => {
-                const el = e.currentTarget as HTMLImageElement;
-                const parent = el.parentElement;
-                el.style.display = 'none';
-                if (parent && !parent.querySelector('[data-placeholder]')) {
-                  const ph = document.createElement('div');
-                  ph.setAttribute('data-placeholder', 'true');
-                  ph.className =
-                    'h-full w-full flex items-center justify-center text-muted text-sm uppercase tracking-editorial';
-                  ph.style.background =
-                    'repeating-linear-gradient(45deg, #e8e3d8, #e8e3d8 12px, #ded8c9 12px, #ded8c9 24px)';
-                  ph.textContent = photo.title ?? `Foto ${index + 1}`;
-                  parent.appendChild(ph);
-                }
-              }}
+              onError={(e) => makePlaceholder(e, photo.title ?? `Foto ${index + 1}`)}
             />
           </div>
         </button>
@@ -149,16 +143,107 @@ function Frame({
         </figcaption>
       </div>
 
-      {hasNote && (
-        <aside className="md:col-span-4 md:pt-2">
-          <p className="text-[10px] uppercase tracking-editorial text-muted mb-3">
-            Por qué se hizo
-          </p>
-          <p className="font-serif italic text-ink/80 text-lg md:text-xl leading-relaxed">
-            {photo.note}
-          </p>
-        </aside>
-      )}
+      <aside className="md:col-span-4 md:pt-2">
+        <p className="text-[10px] uppercase tracking-editorial text-muted mb-3">
+          Por qué se hizo
+        </p>
+        <p className="font-serif italic text-ink/80 text-lg md:text-xl leading-relaxed">
+          {photo.note}
+        </p>
+      </aside>
     </article>
   );
+}
+
+const BENTO_PATTERNS = [
+  'col-span-2 row-span-2',
+  'col-span-2 row-span-1',
+  'col-span-1 row-span-1',
+  'col-span-1 row-span-1',
+  'col-span-1 row-span-1',
+  'col-span-2 row-span-2',
+  'col-span-1 row-span-1',
+  'col-span-2 row-span-1',
+  'col-span-1 row-span-1',
+];
+
+function BentoGrid({
+  photos,
+  startIndex,
+  onOpen,
+}: {
+  photos: Photo[];
+  startIndex: number;
+  onOpen: (absoluteIndex: number) => void;
+}) {
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px] gap-3 md:gap-4 [grid-auto-flow:dense]">
+      {photos.map((photo, i) => {
+        const cls = BENTO_PATTERNS[i % BENTO_PATTERNS.length];
+        return (
+          <BentoTile
+            key={photo.id}
+            photo={photo}
+            className={cls}
+            onOpen={() => onOpen(startIndex + i)}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function BentoTile({
+  photo,
+  className,
+  onOpen,
+}: {
+  photo: Photo;
+  className: string;
+  onOpen: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
+      className={cn(
+        'group relative block overflow-hidden bg-ink/5 cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
+        className,
+      )}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={asset(photo.src)}
+        alt={photo.alt}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        onError={(e) => makePlaceholder(e, photo.title ?? photo.alt)}
+      />
+      {photo.title && (
+        <span className="absolute bottom-2 left-2 text-[10px] uppercase tracking-editorial text-paper bg-ink/55 px-2 py-1 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {photo.title}
+        </span>
+      )}
+    </button>
+  );
+}
+
+function makePlaceholder(
+  e: React.SyntheticEvent<HTMLImageElement>,
+  label: string,
+) {
+  const el = e.currentTarget;
+  const parent = el.parentElement;
+  el.style.display = 'none';
+  if (parent && !parent.querySelector('[data-placeholder]')) {
+    const ph = document.createElement('div');
+    ph.setAttribute('data-placeholder', 'true');
+    ph.className =
+      'absolute inset-0 w-full h-full flex items-center justify-center text-muted text-sm uppercase tracking-editorial';
+    ph.style.background =
+      'repeating-linear-gradient(45deg, #e8e3d8, #e8e3d8 12px, #ded8c9 12px, #ded8c9 24px)';
+    ph.textContent = label;
+    parent.appendChild(ph);
+  }
 }

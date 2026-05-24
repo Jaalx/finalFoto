@@ -136,14 +136,7 @@ export const autoralPhotos: Photo[] = [
   { id: 'a08', src: '/img/autoral/08.jpg', alt: 'Fotografía 08 del proyecto autoral', author: 'sof', title: 'Movimiento' },
   { id: 'a09', src: '/img/autoral/09.jpg', alt: 'Fotografía 09 del proyecto autoral', author: 'sof', title: 'Silencio' },
   { id: 'a10', src: '/img/autoral/10.jpg', alt: 'Fotografía 10 del proyecto autoral', author: 'est', title: 'Huella' },
-  {
-    id: 'a11',
-    src: '/img/autoral/11.jpg',
-    alt: 'Fotografía 11 del proyecto autoral',
-    author: 'est',
-    title: 'Tránsito',
-    note: 'El cuerpo en movimiento, congelado en un sexto de segundo. Pero no es la velocidad lo que me interesa: es lo que queda cuando algo pasa demasiado rápido para ser visto.',
-  },
+  { id: 'a11', src: '/img/autoral/11.jpg', alt: 'Fotografía 11 del proyecto autoral', author: 'est', title: 'Tránsito' },
   { id: 'a12', src: '/img/autoral/12.jpg', alt: 'Fotografía 12 del proyecto autoral', author: 'est', title: 'Quietud' },
 ];
 
