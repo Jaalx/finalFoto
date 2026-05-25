@@ -65,7 +65,7 @@ export function ProjectSection({ project, index }: Props) {
             Por entregar
           </p>
           <p className="text-sm text-ink/60 mt-2">
-            Pendiente subir las fotos
+            Aún no se han subido las fotos
           </p>
         </div>
       )}

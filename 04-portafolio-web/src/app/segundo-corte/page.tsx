@@ -21,8 +21,8 @@ export default function SegundoCortePage() {
             Segundo corte
           </h1>
           <p className="mt-6 max-w-prose text-ink/70 leading-relaxed">
-            Una serie grupal y una actividad de color en escenas urbanas
-            donde cada integrante trabajó su propio matiz.
+            Una serie grupal y una actividad en escenas urbanas donde cada
+            integrante trabajó su propia temática.
           </p>
         </section>
         {segundoCorteProjects.map((project, i) => (
