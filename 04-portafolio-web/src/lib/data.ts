@@ -41,9 +41,9 @@ export const authors: Record<AuthorId, Author> = {
     name: 'Javier Álvarez Marín',
     code: '20202020028',
     image: '/img/autores/jav.webp',
-    shortBio: `Soy ingeniero de sistemas, pero desde siempre he estado conectado al mundo audiovisual. De pequeño editaba videos e imágenes para subirlos a mi canal de YouTube. Esa afición se convirtió en una especialización en audiovisuales durante el colegio y, ya en la universidad, en un trabajo paralelo a los estudios: primero en una agencia y luego en producciones de una productora, donde he podido aplicar lo aprendido en los cursos previos y en la carrera.
+    shortBio: `Desde pequeño he estado conectado al mundo audiovisual. Editaba videos e imágenes para subirlos a mi canal de YouTube, y esa afición me llevó a la especialización en audiovisuales del colegio y, ya en la universidad — en paralelo a la carrera de ingeniería de sistemas —, a trabajar primero en una agencia y luego en producciones donde he podido llevar a la práctica lo aprendido en clase.
 
-Intento siempre ser auténtico y dar la mejor calidad posible. Me gusta hacer de todo, y por eso la fotografía es una de las aficiones que más disfruto.`,
+De ese mismo recorrido viene mi gusto por la fotografía. Es la afición que más disfruto y la que mejor me deja hacer lo que intento en cualquier proyecto: ser auténtico y entregar la mejor calidad posible.`,
     // social: { instagram: 'https://instagram.com/tu_usuario' },
   },
   jos: {
