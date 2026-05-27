@@ -307,7 +307,7 @@ function MemberRow({
             className="overflow-hidden"
           >
             <div className="mt-3 pl-6 pr-2 md:pl-[27px] text-sm text-ink/70 leading-relaxed max-w-[460px] space-y-3">
-              {member.bio.split(/\n\s*\n/).map((para, i) => (
+              {(member.bio ?? '').split(/\n\s*\n/).map((para, i) => (
                 <p key={i}>{para.trim()}</p>
               ))}
             </div>
