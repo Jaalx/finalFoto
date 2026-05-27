@@ -99,7 +99,7 @@ export const projectAutoral = {
   subtitle: 'Proyecto autoral · Tercer corte',
   statement: [
     'El tiempo no se ve, pero deja huella. Este proyecto reúne once miradas sobre eso que pasa entre un instante y el siguiente: cómo se mide en dos relojes a la vez, cómo se queda en las manos de alguien que cose, cómo cambia la luz que entra entre las hojas.',
-    'Cada fotografía es una pregunta distinta sobre el mismo asunto. Vuelo, oficio, gota, rutina, ciudad. Tres autores observan desde ángulos propios, pero las imágenes hablan entre sí y arman un solo gesto: el de mirar despacio lo que se nos escurre rápido.',
+    'Cada fotografía es una pregunta distinta sobre el mismo asunto. Vuelo, oficio, gota, rutina, ciudad. Cuatro autores observan desde ángulos propios, pero las imágenes hablan entre sí y arman un solo gesto: el de mirar despacio lo que se nos escurre rápido.',
     'No buscamos una conclusión. El tiempo no se concluye, se atraviesa. Esto es lo que vimos al atravesarlo.',
   ],
 };
@@ -110,7 +110,6 @@ export const autoralPhotos: Photo[] = [
     src: '/img/autoral/01.webp',
     alt: 'Pájaro amarillo capturado a media volada junto a una planta en una pared blanca',
     author: 'sof',
-    title: 'Aleteo',
     note: 'Quise atrapar el vuelo entero, pero la cámara se quedó con un instante en el medio. Las alas todavía abiertas, el cuerpo apenas adivinado. La fotografía no detiene el tiempo: lo recorta.',
   },
   {
@@ -118,7 +117,6 @@ export const autoralPhotos: Photo[] = [
     src: '/img/autoral/02.webp',
     alt: 'Reloj de bolsillo dorado colgando frente a una pantalla con logs de terminal',
     author: 'sof',
-    title: 'Dos relojes',
     note: 'Un reloj de bolsillo colgado frente a una pantalla que también lleva la cuenta del tiempo, pero en otra lengua. Las manecillas marcan minutos; los logs marcan milisegundos. Dos formas de medir lo mismo, separadas por un siglo.',
   },
   {
@@ -126,17 +124,16 @@ export const autoralPhotos: Photo[] = [
     src: '/img/autoral/03.webp',
     alt: 'Vista nocturna hacia arriba a través de las ramas de un árbol, con la luna brillando entre las hojas',
     author: 'jos',
-    title: 'Luna entre ramas',
     note: 'La luz no llega entera. Antes de tocar el suelo se rompe contra las hojas y deja sólo lo que cabe. Mirar hacia arriba en la noche es ponerse a tiempo para algo que viaja desde hace mucho.',
   },
-  { id: 'a04', src: '/img/autoral/04.webp', alt: 'Escritorio en penumbra con laptop, lámpara verde, libro abierto y reloj de bolsillo entre rosas', author: 'sof', title: 'Refugio' },
-  { id: 'a05', src: '/img/autoral/05.webp', alt: 'Manos de dos generaciones apoyadas sobre tela floreada junto a una máquina de coser', author: 'sof', title: 'Manos que cosen' },
-  { id: 'a06', src: '/img/autoral/06.webp', alt: 'Luz solar filtrándose entre ramas con flores fucsia', author: 'sof', title: 'Luz que se cuela' },
-  { id: 'a07', src: '/img/autoral/07.webp', alt: 'Gota de agua suspendida en el aire bajo una llave de cocina', author: 'jos', title: 'Gota' },
-  { id: 'a08', src: '/img/autoral/08.webp', alt: 'Cuatro pares de zapatos dispuestos sobre una escalera de piedra', author: 'jos', title: 'Después del día' },
-  { id: 'a09', src: '/img/autoral/09.webp', alt: 'Estación de TransMilenio vacía bajo un cielo de atardecer dorado y morado', author: 'est', title: 'Hora dorada' },
-  { id: 'a10', src: '/img/autoral/10.webp', alt: 'Vitrina amarilla de museo con objetos eléctricos antiguos y fotografías en blanco y negro', author: 'est', title: 'Una ciudad luz' },
-  { id: 'a11', src: '/img/autoral/11.webp', alt: 'Río de montaña cruzado por una guadua, rodeado de vegetación y cielo azul', author: 'est', title: 'Caudal' },
+  { id: 'a04', src: '/img/autoral/04.webp', alt: 'Escritorio en penumbra con laptop, lámpara verde, libro abierto y reloj de bolsillo entre rosas', author: 'sof' },
+  { id: 'a05', src: '/img/autoral/05.webp', alt: 'Manos de dos generaciones apoyadas sobre tela floreada junto a una máquina de coser', author: 'sof' },
+  { id: 'a06', src: '/img/autoral/06.webp', alt: 'Luz solar filtrándose entre ramas con flores fucsia', author: 'sof' },
+  { id: 'a07', src: '/img/autoral/07.webp', alt: 'Gota de agua suspendida en el aire bajo una llave de cocina', author: 'jos' },
+  { id: 'a08', src: '/img/autoral/08.webp', alt: 'Cuatro pares de zapatos dispuestos sobre una escalera de piedra', author: 'jos' },
+  { id: 'a09', src: '/img/autoral/09.webp', alt: 'Estación de TransMilenio vacía bajo un cielo de atardecer dorado y morado', author: 'est' },
+  { id: 'a10', src: '/img/autoral/10.webp', alt: 'Vitrina amarilla de museo con objetos eléctricos antiguos y fotografías en blanco y negro', author: 'est' },
+  { id: 'a11', src: '/img/autoral/11.webp', alt: 'Río de montaña cruzado por una guadua, rodeado de vegetación y cielo azul', author: 'est' },
 ];
 
 function makePhotos(

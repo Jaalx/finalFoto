@@ -18,17 +18,17 @@ export function PhotoCard({ photo, index, onClick, hideAuthor }: Props) {
       <button
         type="button"
         onClick={() => onClick?.(index)}
-        className="block w-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink overflow-hidden bg-ink/5"
+        className="block w-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink overflow-hidden bg-paper"
         aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
       >
-        <div className="aspect-[4/5] w-full overflow-hidden">
+        <div className="aspect-[4/5] w-full overflow-hidden bg-paper">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={asset(photo.src)}
             alt={photo.alt}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]"
             onError={(e) => {
               const el = e.currentTarget as HTMLImageElement;
               const parent = el.parentElement;

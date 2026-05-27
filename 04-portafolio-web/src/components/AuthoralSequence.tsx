@@ -112,15 +112,14 @@ function Frame({
           aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
           className="block w-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
         >
-          <div className="relative aspect-[3/4] w-full overflow-hidden">
-            <Placeholder number={numberLabel} title={photo.title} large />
+          <div className="relative w-full overflow-hidden bg-paper">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={asset(photo.src)}
               alt={photo.alt}
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.015]"
+              className="block w-full h-auto transition-transform duration-700 ease-out hover:scale-[1.015]"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
               }}
@@ -186,7 +185,6 @@ function BentoGrid({
           <BentoTile
             key={photo.id}
             photo={photo}
-            index={startIndex + i}
             className={cls}
             onOpen={() => onOpen(startIndex + i)}
           />
@@ -198,34 +196,30 @@ function BentoGrid({
 
 function BentoTile({
   photo,
-  index,
   className,
   onOpen,
 }: {
   photo: Photo;
-  index: number;
   className: string;
   onOpen: () => void;
 }) {
-  const numberLabel = String(index + 1).padStart(2, '0');
   return (
     <button
       type="button"
       onClick={onOpen}
       aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
       className={cn(
-        'group relative block overflow-hidden cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
+        'group relative block overflow-hidden bg-paper cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
         className,
       )}
     >
-      <Placeholder number={numberLabel} title={photo.title} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={asset(photo.src)}
         alt={photo.alt}
         loading="lazy"
         decoding="async"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         onError={(e) => {
           e.currentTarget.style.display = 'none';
         }}

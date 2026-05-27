@@ -101,7 +101,7 @@ function BentoTile({
       onClick={onOpen}
       aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
       className={cn(
-        'group relative block overflow-hidden bg-ink/5 cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
+        'group relative block overflow-hidden bg-paper cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
         className,
       )}
     >
@@ -111,7 +111,7 @@ function BentoTile({
         alt={photo.alt}
         loading="lazy"
         decoding="async"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         onError={(e) => {
           const el = e.currentTarget as HTMLImageElement;
           el.style.display = 'none';
