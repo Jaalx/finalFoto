@@ -262,13 +262,13 @@ export const segundoCorteProjects: Project[] = [
     subtitle: 'Escenas urbanas — actividad temática',
     authors: ['est'],
     description:
-      'El negro como tono dominante en la ciudad. Cinco fotografías rastrean al mismo color en distintos soportes urbanos: las chaquetas en un banco del parque, una reja diagonal con su señal amarilla, la fachada acerada de un edificio, el espejo lateral de un vehículo. Un color discreto y sólido — presente en la ciudad sin pedir atención.',
+      'El negro como tono dominante en la ciudad. Cuatro fotografías rastrean al mismo color en distintos soportes urbanos: las chaquetas en un banco del parque, una reja diagonal con su señal amarilla, la fachada acerada de un edificio, el espejo lateral de un vehículo. Un color discreto y sólido — presente en la ciudad sin pedir atención.',
     layout: 'bento',
     photos: makePhotos(
       'sc-eu-est',
       'segundo-corte/escenas-urbanas/esteban',
       'est',
-      5,
+      4,
       'Escenas urbanas · Esteban · Negro',
     ),
   },

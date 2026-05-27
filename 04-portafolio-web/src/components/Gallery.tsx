@@ -5,20 +5,7 @@ import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import { authors, type Photo } from '@/lib/data';
 import { asset } from '@/lib/paths';
-import { cn } from '@/lib/utils';
 import { PhotoCard } from './PhotoCard';
-
-const BENTO_PATTERNS = [
-  'col-span-2 row-span-2',
-  'col-span-2 row-span-1',
-  'col-span-1 row-span-1',
-  'col-span-1 row-span-1',
-  'col-span-1 row-span-1',
-  'col-span-2 row-span-2',
-  'col-span-1 row-span-1',
-  'col-span-2 row-span-1',
-  'col-span-1 row-span-1',
-];
 
 export function GalleryGrid({
   photos,
@@ -45,12 +32,11 @@ export function GalleryGrid({
   return (
     <>
       {layout === 'bento' ? (
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] sm:auto-rows-[170px] md:auto-rows-[180px] gap-3 md:gap-4 [grid-auto-flow:dense]">
+        <div className="columns-1 sm:columns-2 md:columns-3 gap-3 md:gap-4">
           {photos.map((photo, i) => (
             <BentoTile
               key={photo.id}
               photo={photo}
-              className={BENTO_PATTERNS[i % BENTO_PATTERNS.length]}
               onOpen={() => setIndex(i)}
             />
           ))}
@@ -88,11 +74,9 @@ export function GalleryGrid({
 
 function BentoTile({
   photo,
-  className,
   onOpen,
 }: {
   photo: Photo;
-  className: string;
   onOpen: () => void;
 }) {
   return (
@@ -100,10 +84,7 @@ function BentoTile({
       type="button"
       onClick={onOpen}
       aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
-      className={cn(
-        'group relative block overflow-hidden bg-paper cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
-        className,
-      )}
+      className="group relative block w-full mb-3 md:mb-4 overflow-hidden bg-paper cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink break-inside-avoid"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -111,7 +92,7 @@ function BentoTile({
         alt={photo.alt}
         loading="lazy"
         decoding="async"
-        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        className="block w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         onError={(e) => {
           const el = e.currentTarget as HTMLImageElement;
           el.style.display = 'none';

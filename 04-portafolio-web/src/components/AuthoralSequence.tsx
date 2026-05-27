@@ -5,7 +5,6 @@ import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import { authors, type Photo } from '@/lib/data';
 import { asset } from '@/lib/paths';
-import { cn } from '@/lib/utils';
 
 type Props = {
   photos: Photo[];
@@ -156,18 +155,6 @@ function Frame({
   );
 }
 
-const BENTO_PATTERNS = [
-  'col-span-2 row-span-2',
-  'col-span-2 row-span-1',
-  'col-span-1 row-span-1',
-  'col-span-1 row-span-1',
-  'col-span-1 row-span-1',
-  'col-span-2 row-span-2',
-  'col-span-1 row-span-1',
-  'col-span-2 row-span-1',
-  'col-span-1 row-span-1',
-];
-
 function BentoGrid({
   photos,
   startIndex,
@@ -178,29 +165,23 @@ function BentoGrid({
   onOpen: (absoluteIndex: number) => void;
 }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] sm:auto-rows-[170px] md:auto-rows-[180px] gap-3 md:gap-4 [grid-auto-flow:dense]">
-      {photos.map((photo, i) => {
-        const cls = BENTO_PATTERNS[i % BENTO_PATTERNS.length];
-        return (
-          <BentoTile
-            key={photo.id}
-            photo={photo}
-            className={cls}
-            onOpen={() => onOpen(startIndex + i)}
-          />
-        );
-      })}
+    <div className="columns-1 sm:columns-2 md:columns-3 gap-3 md:gap-4">
+      {photos.map((photo, i) => (
+        <BentoTile
+          key={photo.id}
+          photo={photo}
+          onOpen={() => onOpen(startIndex + i)}
+        />
+      ))}
     </div>
   );
 }
 
 function BentoTile({
   photo,
-  className,
   onOpen,
 }: {
   photo: Photo;
-  className: string;
   onOpen: () => void;
 }) {
   return (
@@ -208,10 +189,7 @@ function BentoTile({
       type="button"
       onClick={onOpen}
       aria-label={`Abrir ${photo.title ?? photo.alt} en pantalla completa`}
-      className={cn(
-        'group relative block overflow-hidden bg-paper cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink',
-        className,
-      )}
+      className="group relative block w-full mb-3 md:mb-4 overflow-hidden bg-paper cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-ink break-inside-avoid"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -219,7 +197,7 @@ function BentoTile({
         alt={photo.alt}
         loading="lazy"
         decoding="async"
-        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        className="block w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         onError={(e) => {
           e.currentTarget.style.display = 'none';
         }}
@@ -233,43 +211,3 @@ function BentoTile({
   );
 }
 
-function Placeholder({
-  number,
-  title,
-  large,
-}: {
-  number: string;
-  title?: string;
-  large?: boolean;
-}) {
-  return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-paper border border-rule/60 text-center px-4">
-      <span
-        className={cn(
-          'font-serif italic text-ink/15',
-          large ? 'text-7xl md:text-8xl' : 'text-4xl md:text-5xl',
-        )}
-      >
-        {number}
-      </span>
-      {title && (
-        <span
-          className={cn(
-            'text-muted/80 uppercase tracking-editorial',
-            large ? 'text-xs' : 'text-[10px]',
-          )}
-        >
-          {title}
-        </span>
-      )}
-      <span
-        className={cn(
-          'text-muted/50 uppercase tracking-editorial',
-          large ? 'text-[10px] mt-2' : 'text-[8px] mt-1',
-        )}
-      >
-        imagen pendiente
-      </span>
-    </div>
-  );
-}
