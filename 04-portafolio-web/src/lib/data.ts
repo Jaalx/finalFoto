@@ -256,6 +256,22 @@ export const segundoCorteProjects: Project[] = [
       { id: 'sc-eu-jos-04', src: '/img/segundo-corte/escenas-urbanas/jose/04.webp', alt: 'Ave — Jose · Letra A', author: 'jos', title: 'Ave' },
     ],
   },
+  {
+    id: 'sc-eu-est',
+    title: 'Negro',
+    subtitle: 'Escenas urbanas — actividad temática',
+    authors: ['est'],
+    description:
+      'El negro como tono dominante en la ciudad. Cinco fotografías rastrean al mismo color en distintos soportes urbanos: las chaquetas en un banco del parque, una reja diagonal con su señal amarilla, la fachada acerada de un edificio, el espejo lateral de un vehículo. Un color discreto y sólido — presente en la ciudad sin pedir atención.',
+    layout: 'bento',
+    photos: makePhotos(
+      'sc-eu-est',
+      'segundo-corte/escenas-urbanas/esteban',
+      'est',
+      5,
+      'Escenas urbanas · Esteban · Negro',
+    ),
+  },
 ];
 
 export const navLinks = [
