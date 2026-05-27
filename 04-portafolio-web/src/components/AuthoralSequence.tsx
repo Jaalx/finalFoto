@@ -39,7 +39,7 @@ export function AuthoralSequence({ photos }: Props) {
         </div>
         <div className="md:col-span-8 md:col-start-5">
           <p className="text-ink/70 leading-relaxed max-w-prose">
-            Doce fotografías ordenadas como una secuencia. Tres destacadas
+            Once fotografías ordenadas como una secuencia. Tres destacadas
             traen consigo la intención de su autor. El resto se sostiene
             en su silencio.
           </p>

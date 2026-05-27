@@ -71,8 +71,9 @@ La fotografía nació para mí como una manera de capturar la esencia de situaci
     name: 'Esteban Bautista Solano',
     code: '20221020089',
     image: '/img/autores/est.webp',
-    shortBio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus.',
+    shortBio: `Como estudiante de Ingeniería de Sistemas, paso gran parte de mi tiempo entre la programación, el análisis de datos y los videojuegos, espacios donde encuentro creatividad, estrategia y aprendizaje constante. Me apasiona entender cómo funcionan las cosas y explorar nuevas ideas a través de la tecnología.
+
+Sin embargo, en la fotografía encontré una manera diferente de expresarme y desconectarme de la rutina. Me gusta capturar todo aquello que llama mi atención: detalles, texturas, colores y momentos cotidianos que muchas veces pasan desapercibidos. Disfruto especialmente el proceso de edición, porque me permite darle una identidad más personal a cada imagen y transmitir la forma en la que observo el mundo.`,
     // social: { instagram: 'https://instagram.com/tu_usuario' },
   },
 };
@@ -97,8 +98,8 @@ export const projectAutoral = {
   title: 'El tiempo',
   subtitle: 'Proyecto autoral · Tercer corte',
   statement: [
-    'El tiempo no se ve, pero deja huella. Este proyecto reúne doce miradas sobre eso que pasa entre un instante y el siguiente: cómo se vacía un lugar cuando nadie lo habita, cómo envejece un objeto en silencio, cómo cambia la luz cuando el día se rinde a la noche.',
-    'Cada fotografía es una pregunta distinta sobre el mismo asunto. Reloj, rutina, deterioro, movimiento detenido. Cuatro autores observan desde ángulos propios, pero las imágenes hablan entre sí y arman un solo gesto: el de mirar despacio lo que se nos escurre rápido.',
+    'El tiempo no se ve, pero deja huella. Este proyecto reúne once miradas sobre eso que pasa entre un instante y el siguiente: cómo se mide en dos relojes a la vez, cómo se queda en las manos de alguien que cose, cómo cambia la luz que entra entre las hojas.',
+    'Cada fotografía es una pregunta distinta sobre el mismo asunto. Vuelo, oficio, gota, rutina, ciudad. Tres autores observan desde ángulos propios, pero las imágenes hablan entre sí y arman un solo gesto: el de mirar despacio lo que se nos escurre rápido.',
     'No buscamos una conclusión. El tiempo no se concluye, se atraviesa. Esto es lo que vimos al atravesarlo.',
   ],
 };
@@ -107,36 +108,35 @@ export const autoralPhotos: Photo[] = [
   {
     id: 'a01',
     src: '/img/autoral/01.webp',
-    alt: 'Fotografía 01 del proyecto autoral',
-    author: 'jav',
-    title: 'Reloj',
-    note: 'Un reloj de pared que paró hace años, pero el polvo sobre los números sigue contando el tiempo a su manera. Lo fotografié sin disfrazar lo que era: un objeto que perdió su función pero no su presencia.',
-  },
-  { id: 'a02', src: '/img/autoral/02.webp', alt: 'Fotografía 02 del proyecto autoral', author: 'jav', title: 'Lugar vacío' },
-  { id: 'a03', src: '/img/autoral/03.webp', alt: 'Fotografía 03 del proyecto autoral', author: 'jav', title: 'Rutina' },
-  { id: 'a04', src: '/img/autoral/04.webp', alt: 'Fotografía 04 del proyecto autoral', author: 'jos', title: 'Envejecimiento' },
-  {
-    id: 'a05',
-    src: '/img/autoral/05.webp',
-    alt: 'Fotografía 05 del proyecto autoral',
-    author: 'jos',
-    title: 'Objeto deteriorado',
-    note: 'Lo que el uso le hace a las cosas. Una textura que no estaba ahí cuando el objeto era nuevo: tiempo escrito en la superficie. La luz fue la única decisión consciente; el resto lo puso el paso de los años.',
-  },
-  { id: 'a06', src: '/img/autoral/06.webp', alt: 'Fotografía 06 del proyecto autoral', author: 'jos', title: 'Día' },
-  {
-    id: 'a07',
-    src: '/img/autoral/07.webp',
-    alt: 'Fotografía 07 del proyecto autoral',
+    alt: 'Pájaro amarillo capturado a media volada junto a una planta en una pared blanca',
     author: 'sof',
-    title: 'Noche',
-    note: 'La hora exacta en que el día deja de ser día y todavía no es noche. Esa pausa que casi nadie mira. Fotografié sin trípode, con la respiración lenta, porque quería que la imagen llevara también ese ritmo.',
+    title: 'Aleteo',
+    note: 'Quise atrapar el vuelo entero, pero la cámara se quedó con un instante en el medio. Las alas todavía abiertas, el cuerpo apenas adivinado. La fotografía no detiene el tiempo: lo recorta.',
   },
-  { id: 'a08', src: '/img/autoral/08.webp', alt: 'Fotografía 08 del proyecto autoral', author: 'sof', title: 'Movimiento' },
-  { id: 'a09', src: '/img/autoral/09.webp', alt: 'Fotografía 09 del proyecto autoral', author: 'sof', title: 'Silencio' },
-  { id: 'a10', src: '/img/autoral/10.webp', alt: 'Fotografía 10 del proyecto autoral', author: 'est', title: 'Huella' },
-  { id: 'a11', src: '/img/autoral/11.webp', alt: 'Fotografía 11 del proyecto autoral', author: 'est', title: 'Tránsito' },
-  { id: 'a12', src: '/img/autoral/12.webp', alt: 'Fotografía 12 del proyecto autoral', author: 'est', title: 'Quietud' },
+  {
+    id: 'a02',
+    src: '/img/autoral/02.webp',
+    alt: 'Reloj de bolsillo dorado colgando frente a una pantalla con logs de terminal',
+    author: 'sof',
+    title: 'Dos relojes',
+    note: 'Un reloj de bolsillo colgado frente a una pantalla que también lleva la cuenta del tiempo, pero en otra lengua. Las manecillas marcan minutos; los logs marcan milisegundos. Dos formas de medir lo mismo, separadas por un siglo.',
+  },
+  {
+    id: 'a03',
+    src: '/img/autoral/03.webp',
+    alt: 'Vista nocturna hacia arriba a través de las ramas de un árbol, con la luna brillando entre las hojas',
+    author: 'jos',
+    title: 'Luna entre ramas',
+    note: 'La luz no llega entera. Antes de tocar el suelo se rompe contra las hojas y deja sólo lo que cabe. Mirar hacia arriba en la noche es ponerse a tiempo para algo que viaja desde hace mucho.',
+  },
+  { id: 'a04', src: '/img/autoral/04.webp', alt: 'Escritorio en penumbra con laptop, lámpara verde, libro abierto y reloj de bolsillo entre rosas', author: 'sof', title: 'Refugio' },
+  { id: 'a05', src: '/img/autoral/05.webp', alt: 'Manos de dos generaciones apoyadas sobre tela floreada junto a una máquina de coser', author: 'sof', title: 'Manos que cosen' },
+  { id: 'a06', src: '/img/autoral/06.webp', alt: 'Luz solar filtrándose entre ramas con flores fucsia', author: 'sof', title: 'Luz que se cuela' },
+  { id: 'a07', src: '/img/autoral/07.webp', alt: 'Gota de agua suspendida en el aire bajo una llave de cocina', author: 'jos', title: 'Gota' },
+  { id: 'a08', src: '/img/autoral/08.webp', alt: 'Cuatro pares de zapatos dispuestos sobre una escalera de piedra', author: 'jos', title: 'Después del día' },
+  { id: 'a09', src: '/img/autoral/09.webp', alt: 'Estación de TransMilenio vacía bajo un cielo de atardecer dorado y morado', author: 'est', title: 'Hora dorada' },
+  { id: 'a10', src: '/img/autoral/10.webp', alt: 'Vitrina amarilla de museo con objetos eléctricos antiguos y fotografías en blanco y negro', author: 'est', title: 'Una ciudad luz' },
+  { id: 'a11', src: '/img/autoral/11.webp', alt: 'Río de montaña cruzado por una guadua, rodeado de vegetación y cielo azul', author: 'est', title: 'Caudal' },
 ];
 
 function makePhotos(
@@ -258,16 +258,6 @@ export const segundoCorteProjects: Project[] = [
       { id: 'sc-eu-jos-03', src: '/img/segundo-corte/escenas-urbanas/jose/03.webp', alt: 'Arco — Jose · Letra A', author: 'jos', title: 'Arco' },
       { id: 'sc-eu-jos-04', src: '/img/segundo-corte/escenas-urbanas/jose/04.webp', alt: 'Ave — Jose · Letra A', author: 'jos', title: 'Ave' },
     ],
-  },
-  {
-    id: 'sc-eu-est',
-    title: '[Temática]',
-    subtitle: 'Escenas urbanas — actividad temática',
-    authors: ['est'],
-    description:
-      '[Pendiente: agregar fotos en public/img/segundo-corte/escenas-urbanas/esteban/ y completar este texto]',
-    layout: 'bento',
-    photos: [],
   },
 ];
 
